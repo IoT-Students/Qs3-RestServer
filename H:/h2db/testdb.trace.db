@@ -60,3 +60,6 @@ passw VARCHAR(50),
 role VARCHAR(50)
 PRIMARY KEY(userID)
 ) [42001-200]
+2022-03-28 13:50:07 jdbc[14]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Syntax error in SQL statement "DELETE *[*] FROM USERS"; expected "identifier"; SQL statement:
+DELETE * FROM users [42001-200]
