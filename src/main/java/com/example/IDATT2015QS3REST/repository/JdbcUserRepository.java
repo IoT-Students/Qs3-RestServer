@@ -19,8 +19,8 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public int save(User user) {
-        return jdbcTemplate.update("INSERT INTO users (username, passw, role) VALUES(?,?,?)",
-                new Object[] {user.getUsername(), user.getPassw(), user.getRole()});
+        return jdbcTemplate.update("INSERT INTO users (name,email,username,passw,role) VALUES(?,?,?,?,?)",
+                new Object[] {user.getName(), user.getEmail(),user.getUsername(), user.getPassw(), user.getRole()});
     }
     @Override
     public List<User> findAll() {
