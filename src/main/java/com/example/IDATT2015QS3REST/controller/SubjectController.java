@@ -13,6 +13,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @EnableAutoConfiguration
 @RequestMapping(value = "/subject")
@@ -30,5 +32,10 @@ public class SubjectController {
         LOGGER.info("Adding subject..." + subject.getSubjectCode());
 
         return subjectService.addSubject(subject);
+    }
+    @GetMapping("{id}")
+    public List getAllSubjects(@PathVariable("id") int id){
+        return subjectService.getAllSubjects(id);
+
     }
 }
