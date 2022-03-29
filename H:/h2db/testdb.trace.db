@@ -1555,3 +1555,12 @@ insert into users values (default, Grethe, grethe, Lærer) [42122-200]
 	at org.apache.tomcat.util.threads.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:659)
 	at org.apache.tomcat.util.threads.TaskThread$WrappingRunnable.run(TaskThread.java:61)
 	at java.base/java.lang.Thread.run(Thread.java:831)
+2022-03-29 14:32:48 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SUBJECTQUEUE" not found; SQL statement:
+INSERT INTO subjectQueue (campus, bygning, rom, bord, øvinger, type) VALUES(?,?,?,?,?,?) [42102-200]
+2022-03-29 14:34:09 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SUBJECTQUEUE" not found; SQL statement:
+INSERT INTO subjectQueue (campus, bygning, rom, bord, øvinger, type) VALUES(?,?,?,?,?,?) [42102-200]
+2022-03-29 14:35:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "SUBJECTQUEUE" not found; SQL statement:
+INSERT INTO subjectQueue (campus, building, room, table, assignments, type) VALUES(?,?,?,?,?,?) [42102-200]
