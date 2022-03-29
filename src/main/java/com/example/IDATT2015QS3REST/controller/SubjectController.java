@@ -35,6 +35,7 @@ public class SubjectController {
     }
     @GetMapping("{id}")
     public List getAllSubjects(@PathVariable("id") int id){
+        LOGGER.info("Jeg prøver å hente ut alle fag til en bruker");
         return subjectService.getAllSubjects(id);
 
     }

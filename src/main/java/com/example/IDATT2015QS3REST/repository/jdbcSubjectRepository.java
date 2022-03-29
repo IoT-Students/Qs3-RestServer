@@ -23,7 +23,7 @@ public class jdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public List<Subject> getAllSubjects(int id){
-        String sql = ("SELECT * FROM subject WHERE subjectId=?");
+        String sql = ("SELECT * FROM subjectUser JOIN subject ON(subjectUser.subjectId = subject.subjectId) WHERE subjectUser.userId=?");
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Subject.class), id);
 
     }

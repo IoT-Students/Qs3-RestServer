@@ -31,7 +31,7 @@ public class SubjectQueueController {
     }
 
     @GetMapping("{id}")
-    public List getAllSubjectQueues(@PathVariable("subjectQueueId") int subjectQueueId){
-        return subjectQueueService.getAllSubjectQueues(subjectQueueId);
+    public List getAllSubjectQueues(@PathVariable("subjectId") int subjectId){
+        return subjectQueueService.getAllSubjectQueues(subjectId);
     }
 }
