@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @EnableAutoConfiguration
 @RequestMapping(value = "/subjectQueue")
@@ -26,5 +28,10 @@ public class SubjectQueueController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public int addSubjectQueue(@RequestBody SubjectQueue subjectQueue) {
         return subjectQueueService.addSubjectQueue(subjectQueue);
+    }
+
+    @GetMapping("{id}")
+    public List getAllSubjectQueues(@PathVariable("subjectQueueId") int subjectQueueId){
+        return subjectQueueService.getAllSubjectQueues(subjectQueueId);
     }
 }
