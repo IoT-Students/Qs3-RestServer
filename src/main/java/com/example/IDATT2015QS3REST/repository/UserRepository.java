@@ -12,6 +12,4 @@ public interface UserRepository {
     List<User> findAll();
 
     User findById(int id);
-
-    LoginResponse findByLoginRequest(LoginRequest loginRequest);
 }
