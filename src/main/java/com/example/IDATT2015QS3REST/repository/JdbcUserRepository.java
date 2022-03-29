@@ -39,20 +39,4 @@ public class JdbcUserRepository implements UserRepository {
         }
     }
 
-    @Override
-    public LoginResponse findByLoginRequest(LoginRequest loginRequest) {
-        try {
-            System.out.println("LogingRequest: " + loginRequest.getUsername() + ", " + loginRequest.getPassword());
-
-            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE username=? AND passw=?",
-                    BeanPropertyRowMapper.newInstance(User.class),loginRequest.getUsername(),loginRequest.getPassword());
-
-            System.out.println("Fant bruker med brukernavn:" + user.getUsername() + ",pass" + user.getPassw() + ",id " + user.getUserID() + " og " + user.getRole());
-            return new LoginResponse("Success", user.getUserID(), user.getRole());
-
-        } catch (IncorrectResultSizeDataAccessException e) {
-            System.out.println("Fant ikke bruker");
-            return new LoginResponse("Fail", 0, null);
-        }
-    }
 }
