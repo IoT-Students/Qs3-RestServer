@@ -25,11 +25,11 @@ public class JdbcLoginRepository implements LoginRepository{
                     BeanPropertyRowMapper.newInstance(User.class),loginRequest.getUsername(),loginRequest.getPassword());
 
             System.out.println("Fant bruker med brukernavn:" + user.getUsername() + ",pass" + user.getPassw() + ",id " + user.getUserID() + " og " + user.getRole());
-            return new LoginResponse("Success", user.getUserID(), user.getRole());
+            return new LoginResponse("Success", user.getUserID(), user.getRole(), user.getName(), user.getEmail());
 
         } catch (IncorrectResultSizeDataAccessException e) {
             System.out.println("Fant ikke bruker");
-            return new LoginResponse("Fail", 0, null);
+            return new LoginResponse("Fail", 0, null, null, null);
         }
     }
 

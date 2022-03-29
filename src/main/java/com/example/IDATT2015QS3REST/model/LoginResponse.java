@@ -11,11 +11,15 @@ public class LoginResponse {
     final private String loginStatus;
     final private int userID;
     final private String role;
+    final private String name;
+    final private String email;
 
-    public LoginResponse(@JsonProperty("loginStatus")  String loginStatus, @JsonProperty("userID") int userID, @JsonProperty("role") String role) {
+    public LoginResponse(@JsonProperty("loginStatus")  String loginStatus, @JsonProperty("userID") int userID, @JsonProperty("role") String role,@JsonProperty("name") String name,@JsonProperty("email") String email) {
         this.loginStatus = loginStatus;
         this.userID = userID;
         this.role = role;
+        this.name = name;
+        this.email = email;
     }
 
     @JsonProperty("loginStatus")
@@ -31,5 +35,14 @@ public class LoginResponse {
     @JsonProperty("role")
     public String getRole() {
         return role;
+    }
+
+    @JsonProperty("name")
+    public String getName() {
+        return name;
+    }
+    @JsonProperty("email")
+    public String getEmail() {
+        return email;
     }
 }
