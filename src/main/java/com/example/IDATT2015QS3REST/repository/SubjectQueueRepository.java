@@ -8,4 +8,8 @@ public interface SubjectQueueRepository {
     int addSubjectQueue(SubjectQueue subjectQueue);
 
     List<SubjectQueue> getAllSubjectQueues(int subjectQueueId);
+
+    List<SubjectQueue> getSubjectQueueUser(int subjectQueueId, int userId);
+
+
 }

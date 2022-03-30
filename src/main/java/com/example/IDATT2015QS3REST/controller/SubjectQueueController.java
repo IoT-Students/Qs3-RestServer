@@ -32,6 +32,15 @@ public class SubjectQueueController {
 
     @GetMapping("{subjectId}")
     public List getAllSubjectQueues(@PathVariable("subjectId") int subjectId){
+        logger.info("Jeg prøver å hente ut alle subjectQueues objekter til et fag");
         return subjectQueueService.getAllSubjectQueues(subjectId);
     }
+
+    @GetMapping("{subjectId}/{userId}")
+    public List getSubjectQueueUser(@PathVariable("subjectId") int subjectId, @PathVariable("userId") int userId){
+        logger.info("Jeg prøver å hente ut køen til en bestemt user med subjectId: " + subjectId + "og userId: " + userId);
+        return subjectQueueService.getSubjectQueueUser(subjectId, userId);
+    }
+
+
 }
