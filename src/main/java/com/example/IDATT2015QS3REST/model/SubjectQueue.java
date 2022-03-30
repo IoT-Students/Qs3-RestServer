@@ -8,7 +8,7 @@ public class SubjectQueue {
     private String building;
     private String room;
     private String table;
-    private String assignments;
+    private Object assignments;
     private int type;
     private int userId;
     private int subjectId;
@@ -61,11 +61,11 @@ public class SubjectQueue {
         this.table = table;
     }
 
-    public String getAssignments() {
+    public Object getAssignments() {
         return assignments;
     }
 
-    public void setAssignments(String assignments) {
+    public void setAssignments(Object assignments) {
         this.assignments = assignments;
     }
 

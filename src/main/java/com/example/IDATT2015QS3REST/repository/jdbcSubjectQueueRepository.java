@@ -22,8 +22,8 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
 
     @Override
     public int addSubjectQueue(SubjectQueue subjectQueue) {
-        return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignments, type) VALUES(?,?,?,?,?,?)",
-                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTable(), subjectQueue.getAssignments(), subjectQueue.getType()});
+        return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignments, type, subjectId, userId) VALUES(?,?,?,?,?,?,?,?)",
+                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTable(), subjectQueue.getAssignments(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId()});
     }
 
     @Override
