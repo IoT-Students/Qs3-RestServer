@@ -41,7 +41,6 @@ public class SubjectStudentController {
         LOGGER.info("Adding..." + subjectUser.getName() + " to the subject with id: " + subjectUser.getSubjectId());
         subjectStudentService.addStudents(new SubjectUser(subjectUser.getName(),subjectUser.getSubjectId()));
 
-
         return true;
     }
 }
