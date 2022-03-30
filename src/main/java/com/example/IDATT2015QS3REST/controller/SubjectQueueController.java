@@ -30,7 +30,7 @@ public class SubjectQueueController {
         return subjectQueueService.addSubjectQueue(subjectQueue);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{subjectId}")
     public List getAllSubjectQueues(@PathVariable("subjectId") int subjectId){
         return subjectQueueService.getAllSubjectQueues(subjectId);
     }

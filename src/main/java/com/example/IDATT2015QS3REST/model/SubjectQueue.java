@@ -10,15 +10,19 @@ public class SubjectQueue {
     private String table;
     private String assignments;
     private int type;
+    private int userId;
+    private int subjectId;
 
     @JsonCreator
-    public SubjectQueue(@JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignments") final String assignments, @JsonProperty("type") final int type) {
+    public SubjectQueue(@JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignments") final String assignments, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
         this.campus = campus;
         this.building = building;
         this.room = room;
         this.table = table;
         this.assignments = assignments;
         this.type = type;
+        this.userId = userId;
+        this.subjectId = subjectId;
     }
 
     public SubjectQueue(){
@@ -71,5 +75,21 @@ public class SubjectQueue {
 
     public void setType(int type) {
         this.type = type;
+    }
+
+    public int getUserId() {
+        return userId;
+    }
+
+    public void setUserId(int userId) {
+        this.userId = userId;
+    }
+
+    public int getSubjectId() {
+        return subjectId;
+    }
+
+    public void setSubjectId(int subjectId) {
+        this.subjectId = subjectId;
     }
 }
