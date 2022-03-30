@@ -18,13 +18,13 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
     @Override
     public int addStudents(SubjectUser subjectUser) {
 
-        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE username=?",
-                BeanPropertyRowMapper.newInstance(User.class),subjectUser.getUsername());
+        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=?",
+                BeanPropertyRowMapper.newInstance(User.class),subjectUser.getName());
 
         int userID = user1.getUserID();
         int subjectID = subjectUser.getSubjectId();
 
-        return jdbcTemplate.update("INSERT INTO subjectuser (userId, subjectId) VALUES(?,?)",
+        return jdbcTemplate.update("INSERT INTO subjectUser (userId, subjectId) VALUES(?,?)",
                 new Object[] {userID, subjectID});
 
     }

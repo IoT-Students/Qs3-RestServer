@@ -17,8 +17,18 @@ public class jdbcSubjectRepository implements SubjectRepository {
 
     @Override
     public int addSubject(Subject subject) {
-        return jdbcTemplate.update("INSERT INTO subject (subjectCode, subjectName) VALUES(?,?)",
-                new Object[] {subject.getSubjectCode(), subject.getSubjectName()});
+        System.out.println("Adding...");
+        jdbcTemplate.update("INSERT INTO subject (subjectCode, subjectName, assignmentAmount) VALUES(?,?,?)",
+                new Object[] {subject.getSubjectCode(), subject.getSubjectName(), subject.getAssignmentAmount()});
+        System.out.println("Added subject");
+
+        System.out.println("Receiving ID...");
+        Subject subject1 = jdbcTemplate.queryForObject("SELECT subjectId FROM subject WHERE subjectCode=? AND subjectName=?",
+                                 BeanPropertyRowMapper.newInstance(Subject.class), subject.getSubjectCode(), subject.getSubjectName());
+
+        int id = subject1.getSubjectId();
+        System.out.println("Found ID..." + id);
+        return id;
     }
 
     @Override

@@ -2,10 +2,10 @@ package com.example.IDATT2015QS3REST.model;
 
 public class SubjectUser {
     private int subjectId;
-    private String username;
+    private String name;
 
-    public SubjectUser(String username, int subjectId){
-        this.username = username;
+    public SubjectUser(String name, int subjectId){
+        this.name = name;
         this.subjectId = subjectId;
 
     }
@@ -13,16 +13,16 @@ public class SubjectUser {
 
     }
 
-    public String getUsername() {
-        return username;
+    public String getName() {
+        return name;
     }
 
     public int getSubjectId() {
         return subjectId;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+    public void setName(String username) {
+        this.name = username;
     }
 
     public void setSubjectId(int subjectId) {

@@ -7,12 +7,14 @@ public class Subject {
     private int subjectId;
     private String subjectCode;
     private String subjectName;
+    private int assignmentAmount;
 
     @JsonCreator
-    public Subject(@JsonProperty("subjectId") final int subjectId , @JsonProperty("subjectCode") final String subjectCode, @JsonProperty("subjectName") final String subjectName) {
+    public Subject(@JsonProperty("subjectId") final int subjectId , @JsonProperty("subjectCode") final String subjectCode, @JsonProperty("subjectName") final String subjectName, @JsonProperty("assignmentAmount") final int assignmentAmount) {
         this.subjectId = subjectId;
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
+        this.assignmentAmount = assignmentAmount;
     }
 
     public Subject(){
@@ -31,6 +33,10 @@ public class Subject {
         return subjectCode;
     }
 
+    public int getAssignmentAmount() {
+        return assignmentAmount;
+    }
+
     public void setSubjectCode(String subjectCode) {
         this.subjectCode = subjectCode;
     }
@@ -41,5 +47,9 @@ public class Subject {
 
     public void setSubjectName(String subjectName) {
         this.subjectName = subjectName;
+    }
+
+    public void setAssignmentAmount(int assignmentAmount) {
+        this.assignmentAmount = assignmentAmount;
     }
 }
