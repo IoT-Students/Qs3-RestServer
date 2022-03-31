@@ -43,4 +43,12 @@ public class SubjectStudentController {
 
         return true;
     }
+
+    @GetMapping("{subjectId}")
+    public List getUsersSubject(@PathVariable("subjectId") int subjectId){
+        LOGGER.info("Jeg henter ut alle studenter på et faget: " + subjectId);
+        return subjectStudentService.getUsersSubject(subjectId);
+    }
+
+
 }
