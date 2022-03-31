@@ -27,15 +27,9 @@ public class SubjectQueueService {
         System.out.println(subjectQueues.size());
 
         return subjectQueues;
+
+
+
     }
 
-    public List<SubjectQueue> getSubjectQueueUser(int subjectId, int userId){
-        List<SubjectQueue> subjectQueues = new ArrayList<SubjectQueue>();
-
-        subjectQueueRepository.getSubjectQueueUser(subjectId, userId).forEach(subjectQueues::add);
-
-        System.out.println(subjectQueues.size());
-
-        return subjectQueues;
-    }
 }

@@ -26,6 +26,16 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
         int userID = user1.getUserID();
         int subjectID = subjectUser.getSubjectId();
 
+        Subject subject = jdbcTemplate.queryForObject("SELECT assignmentAmount FROM subject WHERE subjectId=?",
+                BeanPropertyRowMapper.newInstance(Subject.class),subjectID);
+
+        int assignmentAmount = subject.getAssignmentAmount();
+
+        for(int i=0; i < assignmentAmount; i++){
+            jdbcTemplate.update("INSERT INTO userAssignment (userId, assignmentId,status) VALUES(?,?,?)",
+                    new Object[] {userID, i+1, false});
+        }
+
         return jdbcTemplate.update("INSERT INTO subjectUser (userId, subjectId) VALUES(?,?)",
                 new Object[] {userID, subjectID});
 
