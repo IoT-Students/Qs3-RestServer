@@ -1,6 +1,7 @@
 package com.example.IDATT2015QS3REST.model;
 
 public class SubjectQueueJoinObject {
+    private int subjectQueueId;
     private String name;
     private String campus;
     private String building;
@@ -81,5 +82,13 @@ public class SubjectQueueJoinObject {
 
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
+    }
+
+    public int getSubjectQueueId() {
+        return subjectQueueId;
+    }
+
+    public void setSubjectQueueId(int subjectQueueId) {
+        this.subjectQueueId = subjectQueueId;
     }
 }
