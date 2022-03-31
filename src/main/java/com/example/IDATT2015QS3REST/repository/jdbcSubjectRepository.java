@@ -24,11 +24,17 @@ public class jdbcSubjectRepository implements SubjectRepository {
 
         System.out.println("Receiving ID...");
         Subject subject1 = jdbcTemplate.queryForObject("SELECT subjectId FROM subject WHERE subjectCode=? AND subjectName=?",
-                                 BeanPropertyRowMapper.newInstance(Subject.class), subject.getSubjectCode(), subject.getSubjectName());
+                BeanPropertyRowMapper.newInstance(Subject.class), subject.getSubjectCode(), subject.getSubjectName());
 
-        int id = subject1.getSubjectId();
-        System.out.println("Found ID..." + id);
-        return id;
+        int subjectId = subject1.getSubjectId();
+        System.out.println("Found ID..." + subjectId);
+
+        System.out.println("Adding into assignments...");
+        for(int i=0; i < subject.getAssignmentAmount(); i++){
+            jdbcTemplate.update("INSERT INTO assignment (assignmentNumber, subjectId) VALUES(?,?)",
+                    new Object[] {i+1,subjectId});
+        }
+        return subjectId;
     }
 
     @Override
