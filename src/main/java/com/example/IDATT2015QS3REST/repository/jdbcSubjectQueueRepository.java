@@ -25,7 +25,6 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
         return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignments, type, subjectId, userId) VALUES(?,?,?,?,?,?,?,?)",
                 new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTable(), subjectQueue.getAssignments(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId()});
     }
-
     @Override
     public List<SubjectQueue> getAllSubjectQueues(int subjectQueueId){
         LOGGER.info("Jeg sender nå en sql spørring for alle subjectQueues");
@@ -34,18 +33,12 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueue.class), subjectQueueId);
 
     }
-
     @Override
     public List<SubjectQueue> getSubjectQueueUser(int subjectQueueId, int userId){
-        LOGGER.info("Jeg sender nå en sql spørring for kø for en user");
+        LOGGER.info("Jeg henter nå ut køene for en bruker");
         String sql = ("SELECT * FROM subjectQueue JOIN users ON(subjectQueue.userId = users.userId) WHERE subjectId=? AND subjectQueue.userId=?");
         LOGGER.info(subjectQueueId);
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueue.class), subjectQueueId, userId);
 
     }
-
-
-
-
-
 }

@@ -9,6 +9,7 @@ public interface SubjectQueueRepository {
 
     List<SubjectQueue> getAllSubjectQueues(int subjectQueueId);
 
+    //Metode for å hente ut køen for en bruker
     List<SubjectQueue> getSubjectQueueUser(int subjectQueueId, int userId);
 
 
