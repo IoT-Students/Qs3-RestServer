@@ -1,8 +1,8 @@
 package com.example.IDATT2015QS3REST.repository;
 
 import com.example.IDATT2015QS3REST.controller.LoginController;
-import com.example.IDATT2015QS3REST.model.Subject;
 import com.example.IDATT2015QS3REST.model.SubjectQueue;
+import com.example.IDATT2015QS3REST.model.SubjectQueueJoinObject;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,14 +23,14 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
     @Override
     public int addSubjectQueue(SubjectQueue subjectQueue) {
         return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignments, type, subjectId, userId) VALUES(?,?,?,?,?,?,?,?)",
-                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTable(), subjectQueue.getAssignments(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId()});
+                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignments(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId()});
     }
     @Override
-    public List<SubjectQueue> getAllSubjectQueues(int subjectQueueId){
+    public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectQueueId){
         LOGGER.info("Jeg sender nå en sql spørring for alle subjectQueues");
-        String sql = ("SELECT * FROM subjectQueue JOIN users ON(subjectQueue.userId = users.userId) WHERE subjectId=?");
+        String sql = ("SELECT subjectQueue.*, users.name FROM subjectQueue JOIN users ON(subjectQueue.userId = users.userId) WHERE subjectId=?");
 
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueue.class), subjectQueueId);
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueueJoinObject.class), subjectQueueId);
 
     }
     @Override

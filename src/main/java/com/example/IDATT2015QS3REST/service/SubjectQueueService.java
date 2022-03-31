@@ -2,6 +2,7 @@ package com.example.IDATT2015QS3REST.service;
 
 import com.example.IDATT2015QS3REST.model.Subject;
 import com.example.IDATT2015QS3REST.model.SubjectQueue;
+import com.example.IDATT2015QS3REST.model.SubjectQueueJoinObject;
 import com.example.IDATT2015QS3REST.repository.SubjectQueueRepository;
 import com.example.IDATT2015QS3REST.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +20,8 @@ public class SubjectQueueService {
         return subjectQueueRepository.addSubjectQueue(subjectQueue);
     }
 
-    public List<SubjectQueue> getAllSubjectQueues(int subjectQueueId){
-        List<SubjectQueue> subjectQueues = new ArrayList<SubjectQueue>();
+    public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectQueueId){
+        List<SubjectQueueJoinObject> subjectQueues = new ArrayList<SubjectQueueJoinObject>();
 
         subjectQueueRepository.getAllSubjectQueues(subjectQueueId).forEach(subjectQueues::add);
 
