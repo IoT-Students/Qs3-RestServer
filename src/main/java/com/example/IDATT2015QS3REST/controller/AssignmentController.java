@@ -1,12 +1,7 @@
 package com.example.IDATT2015QS3REST.controller;
 
 import com.example.IDATT2015QS3REST.model.AssignmentApprove;
-import com.example.IDATT2015QS3REST.model.LoginRequest;
-import com.example.IDATT2015QS3REST.model.LoginResponse;
-import com.example.IDATT2015QS3REST.model.User;
-import com.example.IDATT2015QS3REST.repository.UserRepository;
-import com.example.IDATT2015QS3REST.service.AssignmentApproveService;
-import com.example.IDATT2015QS3REST.service.LoginService;
+import com.example.IDATT2015QS3REST.service.AssignmentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,13 +10,15 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping(value = "/approveAssignment")
+@RequestMapping(value = "/assignment")
 @EnableAutoConfiguration
 @CrossOrigin
 public class AssignmentController {
     @Autowired
-    private AssignmentApproveService assignmentApproveService;
+    private AssignmentService assignmentApproveService;
 
     private static final Logger LOGGER = LogManager.getLogger(AssignmentController.class);
 
@@ -32,4 +29,12 @@ public class AssignmentController {
 
         return assignmentApproveService.doAssignmentApprovment(assignmentApprove);
     }
+
+    @GetMapping("{id}")
+    public List getAllAssignmentsSubject(@PathVariable("userId") int userId, @PathVariable("subjectId") int subjectId ){
+        LOGGER.info("Jeg prøver å hente ut alle øvinger til en student på et fag");
+        return assignmentApproveService.getAllAssignmentsSubject(userId, subjectId);
+
+    }
+
 }

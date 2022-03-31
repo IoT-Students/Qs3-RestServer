@@ -2,14 +2,16 @@ package com.example.IDATT2015QS3REST.repository;
 
 import com.example.IDATT2015QS3REST.model.Assignment;
 import com.example.IDATT2015QS3REST.model.AssignmentApprove;
-import com.example.IDATT2015QS3REST.model.User;
+import com.example.IDATT2015QS3REST.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 @Repository
-public class JdbcAssigmentApproveRepository implements AssignmentApproveRepository{
+public class JdbcAssigmentRepository implements AssignmentRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
@@ -19,6 +21,13 @@ public class JdbcAssigmentApproveRepository implements AssignmentApproveReposito
 
         return jdbcTemplate.update("UPDATE userAssignment JOIN assignment ON(userAssignment.assignmentId = assignment.assignmentId) JOIN users ON(userAssignment.userId = users.userId) SET userAssignment.status = true WHERE users.name=? AND assignment.subjectId=? AND assignment.assignmentNumber=?",
                 new Object[] { assignmentApprove.getName(), assignmentApprove.getSubjectId(), assignmentApprove.getAssignmentNumber()});
+
+    }
+
+    @Override
+    public List<Assignment> getAllAssignmentsSubject(int userId, int subjectId){
+        String sql = ("SELECT assignment.assignmentNumber, assignment.assignmentId, userAssignment.status FROM assignment JOIN userAssignment ON(assignment.assignmentId = userAssignment.assignmentId) WHERE userAssignment.userId=? AND assignment.subjectId=?");
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Assignment.class), userId, subjectId);
 
     }
 }

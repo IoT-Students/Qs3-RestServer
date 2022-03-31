@@ -28,8 +28,5 @@ public class SubjectService {
         System.out.println(subjects.size());
 
         return subjects;
-
-
-
     }
 }

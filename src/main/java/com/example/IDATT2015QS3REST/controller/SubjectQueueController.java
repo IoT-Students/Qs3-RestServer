@@ -34,4 +34,9 @@ public class SubjectQueueController {
     public List getAllSubjectQueues(@PathVariable("subjectId") int subjectId){
         return subjectQueueService.getAllSubjectQueues(subjectId);
     }
+
+    @GetMapping("{subjectId}/{userId}")
+    public List getSubjectQueueUser(@PathVariable("subjectId") int subjectId, @PathVariable("userId") int userId){
+        return subjectQueueService.getSubjectQueueUser(subjectId, userId);
+    }
 }
