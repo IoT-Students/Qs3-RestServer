@@ -1,6 +1,6 @@
 package com.example.IDATT2015QS3REST.repository;
 
-import com.example.IDATT2015QS3REST.model.Assignment;
+
 import com.example.IDATT2015QS3REST.model.AssignmentApprove;
 import com.example.IDATT2015QS3REST.model.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +18,18 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
 
     @Override
     public int doAssignmentApprove(AssignmentApprove assignmentApprove) {
-
-        return jdbcTemplate.update("UPDATE userAssignment JOIN assignment ON(userAssignment.assignmentId = assignment.assignmentId) JOIN users ON(userAssignment.userId = users.userId) SET userAssignment.status = true WHERE users.name=? AND assignment.subjectId=? AND assignment.assignmentNumber=?",
+        int update = jdbcTemplate.update("UPDATE userAssignment JOIN assignment ON(userAssignment.assignmentId = assignment.assignmentId) JOIN users ON(userAssignment.userId = users.userId) SET userAssignment.status = true WHERE users.name=? AND assignment.subjectId=? AND assignment.assignmentNumber=?",
                 new Object[] { assignmentApprove.getName(), assignmentApprove.getSubjectId(), assignmentApprove.getAssignmentNumber()});
+
+        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=?",
+                BeanPropertyRowMapper.newInstance(User.class),assignmentApprove.getName());
+
+        int userId = user1.getUserID();
+
+        jdbcTemplate.update("DELETE FROM subjectQueue WHERE userId=? AND subjectId=?",
+        new Object[] { userId, assignmentApprove.getSubjectId()});
+
+        return update;
 
     }
 

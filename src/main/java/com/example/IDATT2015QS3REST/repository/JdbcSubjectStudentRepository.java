@@ -1,5 +1,6 @@
 package com.example.IDATT2015QS3REST.repository;
 
+import com.example.IDATT2015QS3REST.model.Assignment;
 import com.example.IDATT2015QS3REST.model.Subject;
 import com.example.IDATT2015QS3REST.model.SubjectUser;
 import com.example.IDATT2015QS3REST.model.User;
@@ -18,7 +19,7 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int addStudents(SubjectUser subjectUser) {
+    public int addStudent(SubjectUser subjectUser) {
 
         User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=?",
                 BeanPropertyRowMapper.newInstance(User.class),subjectUser.getName());
@@ -31,10 +32,31 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
 
         int assignmentAmount = subject.getAssignmentAmount();
 
+
         for(int i=0; i < assignmentAmount; i++){
+            Assignment assignment = jdbcTemplate.queryForObject("SELECT assignmentId FROM assignment WHERE subjectId=? AND assignmentNumber=?",
+                    BeanPropertyRowMapper.newInstance(Assignment.class),subjectID, i+1);
+
+            int assignmentId = assignment.getAssignmentId();
+
             jdbcTemplate.update("INSERT INTO userAssignment (userId, assignmentId,status) VALUES(?,?,?)",
-                    new Object[] {userID, i+1, false});
+                    new Object[] {userID, assignmentId, false});
         }
+
+        return jdbcTemplate.update("INSERT INTO subjectUser (userId, subjectId) VALUES(?,?)",
+                new Object[] {userID, subjectID});
+
+    }
+
+    @Override
+    public int addTeacher(SubjectUser subjectUser) {
+
+        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=?",
+                BeanPropertyRowMapper.newInstance(User.class),subjectUser.getName());
+
+        int userID = user1.getUserID();
+        int subjectID = subjectUser.getSubjectId();
+
 
         return jdbcTemplate.update("INSERT INTO subjectUser (userId, subjectId) VALUES(?,?)",
                 new Object[] {userID, subjectID});

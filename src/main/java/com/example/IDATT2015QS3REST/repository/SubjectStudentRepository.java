@@ -8,7 +8,8 @@ import java.util.List;
 
 public interface SubjectStudentRepository {
 
-    int addStudents(SubjectUser subjectUser);
+    int addStudent(SubjectUser subjectUser);
+    int addTeacher(SubjectUser subjectUser);
 
     List<User> getUsersSubject(int subjectId);
 

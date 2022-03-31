@@ -15,8 +15,11 @@ public class SubjectStudentService {
     @Autowired
     SubjectStudentRepository subjectStudentRepository;
 
-    public int addStudents(SubjectUser subjectUser) {
-        return subjectStudentRepository.addStudents(subjectUser);
+    public int addStudent(SubjectUser subjectUser) {
+        return subjectStudentRepository.addStudent(subjectUser);
+    }
+    public int addTeacher(SubjectUser subjectUser) {
+        return subjectStudentRepository.addTeacher(subjectUser);
     }
 
     public List<User> getUsersSubject(int subjectId){

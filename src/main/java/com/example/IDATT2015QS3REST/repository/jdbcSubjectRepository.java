@@ -34,6 +34,7 @@ public class jdbcSubjectRepository implements SubjectRepository {
             jdbcTemplate.update("INSERT INTO assignment (assignmentNumber, subjectId) VALUES(?,?)",
                     new Object[] {i+1,subjectId});
         }
+        System.out.println("Success");
         return subjectId;
     }
 
