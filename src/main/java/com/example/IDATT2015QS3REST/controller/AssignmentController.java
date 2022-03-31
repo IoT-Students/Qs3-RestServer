@@ -30,7 +30,7 @@ public class AssignmentController {
         return assignmentApproveService.doAssignmentApprovment(assignmentApprove);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("{userId}/{subjectId}")
     public List getAllAssignmentsSubject(@PathVariable("userId") int userId, @PathVariable("subjectId") int subjectId ){
         LOGGER.info("Jeg prøver å hente ut alle øvinger til en student på et fag");
         return assignmentApproveService.getAllAssignmentsSubject(userId, subjectId);
