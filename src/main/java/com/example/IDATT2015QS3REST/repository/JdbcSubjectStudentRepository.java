@@ -9,6 +9,8 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
@@ -58,6 +60,13 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
 
         return jdbcTemplate.update("INSERT INTO subjectUser (userId, subjectId) VALUES(?,?)",
                 new Object[] {userID, subjectID});
+
+    }
+
+    @Override
+    public List<User> getUsersSubject(int subjectId){
+        String sql = ("SELECT users.userId, users.name, users.email, users.role FROM users JOIN subjectUser ON(subjectUser.userId = users.userId) WHERE subjectUser.subjectId=? AND users.role ='Student'");
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(User.class), subjectId);
 
     }
 
