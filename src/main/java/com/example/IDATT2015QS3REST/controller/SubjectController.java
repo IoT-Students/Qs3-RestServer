@@ -29,7 +29,7 @@ public class SubjectController {
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public int addSubject(final @RequestBody Subject subject) {
-        LOGGER.info("Adding subject..." + subject.getSubjectCode());
+        LOGGER.info("Adding subject..." + subject.getSubjectCode() + subject.getRequiredAssignments());
 
         return subjectService.addSubject(subject);
     }

@@ -6,6 +6,7 @@ public class Assignment {
     private int assignmentNumber;
     private boolean status;
 
+
     public Assignment(int assignmentId, int subjectId, int assignmentNumber, boolean status){
         this.assignmentId = assignmentId;
         this.subjectId = subjectId;

@@ -8,6 +8,7 @@ public class Subject {
     private String subjectCode;
     private String subjectName;
     private int assignmentAmount;
+    private int requiredAssignments;
     private int queueSize;
 
     @JsonCreator
@@ -36,6 +37,14 @@ public class Subject {
 
     public int getAssignmentAmount() {
         return assignmentAmount;
+    }
+
+    public int getRequiredAssignments() {
+        return requiredAssignments;
+    }
+
+    public void setRequiredAssignments(int requiredAssignments) {
+        this.requiredAssignments = requiredAssignments;
     }
 
     public void setSubjectCode(String subjectCode) {
