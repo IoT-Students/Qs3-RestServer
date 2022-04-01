@@ -8,18 +8,18 @@ public class SubjectQueue {
     private String building;
     private String room;
     private String tabl;
-    private String assignments;
+    private int assignment;
     private int type;
     private int userId;
     private int subjectId;
 
     @JsonCreator
-    public SubjectQueue(@JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignments") final String assignments, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
+    public SubjectQueue(@JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignments") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
         this.campus = campus;
         this.building = building;
         this.room = room;
         this.tabl = table;
-        this.assignments = assignments;
+        this.assignment = assignment;
         this.type = type;
         this.userId = userId;
         this.subjectId = subjectId;
@@ -61,12 +61,12 @@ public class SubjectQueue {
         this.tabl = tabl;
     }
 
-    public String getAssignments() {
-        return assignments;
+    public int getAssignment() {
+        return assignment;
     }
 
-    public void setAssignments(String assignments) {
-        this.assignments = assignments;
+    public void setAssignments(int assignment) {
+        this.assignment = assignment;
     }
 
     public int getType() {

@@ -23,7 +23,7 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
     @Override
     public int addSubjectQueue(SubjectQueue subjectQueue) {
         return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignments, type, subjectId, userId) VALUES(?,?,?,?,?,?,?,?)",
-                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignments(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId()});
+                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignment(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId()});
     }
     @Override
     public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectQueueId){

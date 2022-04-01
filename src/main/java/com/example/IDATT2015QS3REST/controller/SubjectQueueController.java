@@ -27,6 +27,7 @@ public class SubjectQueueController {
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public int addSubjectQueue(@RequestBody SubjectQueue subjectQueue) {
+        logger.info("DETTE ER ASSIGNMENTNUMMER:" + subjectQueue.getAssignment());
         return subjectQueueService.addSubjectQueue(subjectQueue);
     }
 
