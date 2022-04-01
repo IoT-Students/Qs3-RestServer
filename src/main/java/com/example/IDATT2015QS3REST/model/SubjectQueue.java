@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class SubjectQueue {
+    private int subjectQueueId;
     private String campus;
     private String building;
     private String room;
@@ -14,7 +15,8 @@ public class SubjectQueue {
     private int subjectId;
 
     @JsonCreator
-    public SubjectQueue(@JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignments") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
+    public SubjectQueue(@JsonProperty("subjectQueueId") final int subjectQueueId, @JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignments") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
+        this.subjectQueueId = subjectQueueId;
         this.campus = campus;
         this.building = building;
         this.room = room;
@@ -91,5 +93,13 @@ public class SubjectQueue {
 
     public void setSubjectId(int subjectId) {
         this.subjectId = subjectId;
+    }
+
+    public int getSubjectQueueId() {
+        return subjectQueueId;
+    }
+
+    public void setSubjectQueueId(int subjectQueueId) {
+        this.subjectQueueId = subjectQueueId;
     }
 }
