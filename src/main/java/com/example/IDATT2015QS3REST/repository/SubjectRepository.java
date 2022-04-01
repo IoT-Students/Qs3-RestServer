@@ -8,4 +8,8 @@ public interface SubjectRepository {
     int addSubject(Subject subject);
 
     List<Subject> getAllSubjects(int id);
+
+    int getQueueSize(int subjectId);
+
+    int setQueueSize(int subjectId, int queueSize);
 }

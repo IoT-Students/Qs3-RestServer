@@ -39,6 +39,4 @@ public class SubjectQueueService {
 
         return subjectQueueUser;
     }
-
-
 }
