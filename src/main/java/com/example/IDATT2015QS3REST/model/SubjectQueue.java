@@ -15,7 +15,7 @@ public class SubjectQueue {
     private int subjectId;
 
     @JsonCreator
-    public SubjectQueue(@JsonProperty("subjectQueueId") final int subjectQueueId, @JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignments") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
+    public SubjectQueue(@JsonProperty("subjectQueueId") final int subjectQueueId, @JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignment") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
         this.subjectQueueId = subjectQueueId;
         this.campus = campus;
         this.building = building;
@@ -67,7 +67,7 @@ public class SubjectQueue {
         return assignment;
     }
 
-    public void setAssignments(int assignment) {
+    public void setAssignment(int assignment) {
         this.assignment = assignment;
     }
 

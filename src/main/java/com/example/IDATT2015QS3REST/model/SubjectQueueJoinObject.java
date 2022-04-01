@@ -7,7 +7,7 @@ public class SubjectQueueJoinObject {
     private String building;
     private String room;
     private String tabl;
-    private String assignments;
+    private int assignment;
     private int type;
     private int userId;
     private int subjectId;
@@ -52,12 +52,12 @@ public class SubjectQueueJoinObject {
         this.tabl = tabl;
     }
 
-    public String getAssignments() {
-        return assignments;
+    public int getAssignment() {
+        return assignment;
     }
 
-    public void setAssignments(String assignments) {
-        this.assignments = assignments;
+    public void setAssignment(int assignment) {
+        this.assignment = assignment;
     }
 
     public int getType() {
