@@ -13,6 +13,7 @@ public class SubjectQueue {
     private int type;
     private int userId;
     private int subjectId;
+    private int position;
 
     @JsonCreator
     public SubjectQueue(@JsonProperty("subjectQueueId") final int subjectQueueId, @JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignment") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId){
@@ -101,5 +102,13 @@ public class SubjectQueue {
 
     public void setSubjectQueueId(int subjectQueueId) {
         this.subjectQueueId = subjectQueueId;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

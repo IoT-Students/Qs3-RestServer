@@ -7,6 +7,7 @@ public class AssignmentApprove {
     private String name;
     private int subjectId;
     private int assignmentNumber;
+    private int position;
 
     @JsonCreator
     public AssignmentApprove(String name, int subjectId, int assignmentNumber){
@@ -32,4 +33,11 @@ public class AssignmentApprove {
         return assignmentNumber;
     }
 
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
+    }
 }

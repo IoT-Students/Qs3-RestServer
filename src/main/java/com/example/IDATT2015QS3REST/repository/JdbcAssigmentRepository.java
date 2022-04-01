@@ -31,6 +31,9 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
         jdbcTemplate.update("DELETE FROM subjectQueue WHERE userId=? AND subjectId=?",
         new Object[] { userId, assignmentApprove.getSubjectId()});
 
+        jdbcTemplate.update("UPDATE subjectQueue SET position = position - 1 WHERE subjectId = ? AND position > ?",
+                new Object[] { assignmentApprove.getSubjectId(), assignmentApprove.getPosition()});
+
         return update;
 
     }

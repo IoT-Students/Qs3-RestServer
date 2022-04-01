@@ -11,6 +11,7 @@ public class SubjectQueueJoinObject {
     private int type;
     private int userId;
     private int subjectId;
+    private int position;
 
     public String getName() {
         return name;
@@ -90,5 +91,13 @@ public class SubjectQueueJoinObject {
 
     public void setSubjectQueueId(int subjectQueueId) {
         this.subjectQueueId = subjectQueueId;
+    }
+
+    public int getPosition() {
+        return position;
+    }
+
+    public void setPosition(int position) {
+        this.position = position;
     }
 }

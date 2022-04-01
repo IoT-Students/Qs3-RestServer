@@ -22,8 +22,15 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
 
     @Override
     public int addSubjectQueue(SubjectQueue subjectQueue) {
-        return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignment, type, subjectId, userId) VALUES(?,?,?,?,?,?,?,?)",
-                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignment(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId()});
+
+        int position = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM subjectQueue WHERE subjectId=?",
+                new Object[] {subjectQueue.getSubjectId()}, Integer.class);
+
+        System.out.println("Position is " + position);
+        subjectQueue.setPosition(position + 1);
+
+        return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignment, type, subjectId, userId, position) VALUES(?,?,?,?,?,?,?,?,?)",
+                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignment(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId(), subjectQueue.getPosition()});
     }
     @Override
     public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectQueueId){
