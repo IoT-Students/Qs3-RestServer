@@ -44,14 +44,6 @@ public class SubjectStudentController {
 
         return true;
     }
-    @PostMapping(value = "/saveStudent", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-    @ResponseStatus(value = HttpStatus.CREATED)
-    public boolean addUserSubject(@RequestBody SubjectUser subjectUser) {
-        LOGGER.info("Adding..." + subjectUser.getName() + " to the subject with id: " + subjectUser.getSubjectId());
-        subjectStudentService.addStudent(new SubjectUser(subjectUser.getName(),subjectUser.getSubjectId()));
-
-        return true;
-    }
 
     @GetMapping("{subjectId}")
     public List<User> getUsersSubject(@PathVariable("subjectId") int subjectId){
