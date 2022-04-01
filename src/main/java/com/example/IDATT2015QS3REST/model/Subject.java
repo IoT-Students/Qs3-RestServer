@@ -8,6 +8,7 @@ public class Subject {
     private String subjectCode;
     private String subjectName;
     private int assignmentAmount;
+    private int queueSize;
 
     @JsonCreator
     public Subject(@JsonProperty("subjectId") final int subjectId , @JsonProperty("subjectCode") final String subjectCode, @JsonProperty("subjectName") final String subjectName, @JsonProperty("assignmentAmount") final int assignmentAmount) {
@@ -51,5 +52,13 @@ public class Subject {
 
     public void setAssignmentAmount(int assignmentAmount) {
         this.assignmentAmount = assignmentAmount;
+    }
+
+    public int getQueueSize() {
+        return queueSize;
+    }
+
+    public void setQueueSize(int queueSize) {
+        this.queueSize = queueSize;
     }
 }

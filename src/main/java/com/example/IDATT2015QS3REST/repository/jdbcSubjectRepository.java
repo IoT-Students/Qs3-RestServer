@@ -42,11 +42,23 @@ public class jdbcSubjectRepository implements SubjectRepository {
     public List<Subject> getAllSubjects(int id){
         String sql = ("SELECT * FROM subjectUser JOIN subject ON(subjectUser.subjectId = subject.subjectId) WHERE subjectUser.userId=?");
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Subject.class), id);
-
     }
 
+    @Override
+    public int getQueueSize(int subjectId) {
+        int size = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM subjectQueue WHERE subjectId=?",
+                new Object[] {subjectId}, Integer.class);
 
+        return size;
+    }
 
+    @Override
+    public int setQueueSize(int subjectId, int queueSize) {
+        System.out.println("Setter size fra repo med subjectId" + subjectId + " til " + queueSize);
 
+        int response = jdbcTemplate.update("UPDATE subject SET queueSize = ? WHERE subjectId = ?",
+                new Object[] {queueSize, subjectId});
 
+        return response;
+    }
 }
