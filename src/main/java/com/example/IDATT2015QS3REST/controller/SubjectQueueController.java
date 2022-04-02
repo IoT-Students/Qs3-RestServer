@@ -31,13 +31,14 @@ public class SubjectQueueController {
         return subjectQueueService.addSubjectQueue(subjectQueue);
     }
 
-    @GetMapping("{subjectId}")
+    @GetMapping("/{subjectId}")
     public List getAllSubjectQueues(@PathVariable("subjectId") int subjectId){
         return subjectQueueService.getAllSubjectQueues(subjectId);
     }
 
-    @GetMapping("{subjectId}/{userId}")
+    @GetMapping("/{subjectId}/{userId}")
     public List getSubjectQueueUser(@PathVariable("subjectId") int subjectId, @PathVariable("userId") int userId){
+        logger.info("Prøver å hente subjectQueueUser med subjectId " + subjectId + " og userId " + userId);
         return subjectQueueService.getSubjectQueueUser(subjectId, userId);
     }
 }

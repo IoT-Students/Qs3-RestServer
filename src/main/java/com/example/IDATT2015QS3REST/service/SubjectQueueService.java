@@ -35,8 +35,6 @@ public class SubjectQueueService {
 
         subjectQueueRepository.getSubjectQueueUser(subjectId, userId).forEach(subjectQueueUser::add);
 
-        System.out.println(subjectQueueUser.size());
-
         return subjectQueueUser;
     }
 }
