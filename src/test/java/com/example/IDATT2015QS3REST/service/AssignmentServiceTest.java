@@ -14,7 +14,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.mockito.Mockito.lenient;
 
 @ExtendWith(MockitoExtension.class)
 public class AssignmentServiceTest {
@@ -25,7 +24,6 @@ public class AssignmentServiceTest {
     private AssignmentRepository assignmentRepository;
 
     @BeforeEach
-    // NB!! Mock-konteksten resettes mellom hver testmetode (@AfterEach kjøres og rydder opp), så bare @Before/@BeforeClass vil ikke funke
     public void setUp() {
 
         Assignment assignment1 = new Assignment(1, 1, 1, false);
@@ -36,7 +34,7 @@ public class AssignmentServiceTest {
         assignments.add(assignment2);
 
         Mockito.lenient().when(assignmentRepository.doAssignmentApprove(Mockito.any())).thenReturn(1);
-        Mockito.lenient().when(assignmentRepository.getAllAssignmentsSubject(Mockito.anyInt(), Mockito.anyInt())).thenReturn(assignments);// merk bruk av lenient() her, ellers blir det exception
+        Mockito.lenient().when(assignmentRepository.getAllAssignmentsSubject(Mockito.anyInt(), Mockito.anyInt())).thenReturn(assignments);
 
     }
     @Test
