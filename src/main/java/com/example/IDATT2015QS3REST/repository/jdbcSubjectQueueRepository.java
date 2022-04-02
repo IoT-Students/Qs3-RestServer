@@ -42,7 +42,7 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
     }
     @Override
     public List<SubjectQueue> getSubjectQueueUser(int subjectQueueId, int userId){
-        LOGGER.info("Jeg henter nå ut køene for en bruker");
+        LOGGER.info("Jeg henter nå ut kø-objektet for en bruker");
         String sql = ("SELECT * FROM subjectQueue JOIN users ON(subjectQueue.userId = users.userId) WHERE subjectId=? AND subjectQueue.userId=?");
         LOGGER.info(subjectQueueId);
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueue.class), subjectQueueId, userId);
