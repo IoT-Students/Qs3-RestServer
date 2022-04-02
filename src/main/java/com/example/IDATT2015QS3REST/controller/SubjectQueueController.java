@@ -47,4 +47,10 @@ public class SubjectQueueController {
         logger.info("Henter ut om brukeren er i kø");
         return subjectQueueService.userInQueue(userId);
     }
+
+    @PostMapping("/leave-queue")
+    public int leaveQueue(@RequestBody SubjectQueue subjectQueue) {
+        logger.info("Fjerner bruker " + subjectQueue.getUserId() + " fra kø " + subjectQueue.getSubjectId());
+        return subjectQueueService.leaveQueue(subjectQueue);
+    }
 }

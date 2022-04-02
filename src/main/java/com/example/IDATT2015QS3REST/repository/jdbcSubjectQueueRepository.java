@@ -55,4 +55,11 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
         String sql = ("SELECT COUNT(*) FROM subjectQueue WHERE userId = ?");
         return jdbcTemplate.queryForObject(sql, new Object[]{userId}, Integer.class);
     }
+
+    @Override
+    public int leaveQueue(SubjectQueue subjectQueue) {
+        LOGGER.info("Fjerner bruker fra kø");
+        return jdbcTemplate.update("DELETE FROM subjectQueue WHERE subjectQueueId = ? ",
+                new Object[]{subjectQueue.getSubjectQueueId()});
+    }
 }

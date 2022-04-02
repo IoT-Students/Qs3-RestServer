@@ -14,4 +14,6 @@ public interface SubjectQueueRepository {
     List<SubjectQueue> getSubjectQueueUser(int subjectQueueId, int userId);
 
     int userInQueue(int userId);
+
+    int leaveQueue(SubjectQueue subjectQueue);
 }

@@ -44,4 +44,8 @@ public class SubjectQueueService {
 
         return userInQueue > 0;
     }
+
+    public int leaveQueue(SubjectQueue subjectQueue) {
+        return subjectQueueRepository.leaveQueue(subjectQueue);
+    }
 }
