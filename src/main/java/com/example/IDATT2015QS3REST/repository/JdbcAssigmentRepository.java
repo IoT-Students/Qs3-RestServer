@@ -42,6 +42,5 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
     public List<Assignment> getAllAssignmentsSubject(int userId, int subjectId){
         String sql = ("SELECT assignment.assignmentNumber, assignment.assignmentId, userAssignment.status FROM assignment JOIN userAssignment ON(assignment.assignmentId = userAssignment.assignmentId) WHERE userAssignment.userId=? AND assignment.subjectId=?");
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Assignment.class), userId, subjectId);
-
     }
 }

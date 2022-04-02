@@ -28,4 +28,5 @@ public class LoginRequest {
     public String getPassword() {
         return password;
     }
+
 }
