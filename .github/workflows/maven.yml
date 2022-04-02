@@ -16,7 +16,7 @@ jobs:
           java-version: '16'
           distribution: 'temurin'
           cache: maven
-      - name: Test
+      - name: Test with JUnit
         run: mvn test
 
   build:
