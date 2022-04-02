@@ -12,11 +12,11 @@ public class Subject {
     private int queueSize;
 
     @JsonCreator
-    public Subject(@JsonProperty("subjectId") final int subjectId , @JsonProperty("subjectCode") final String subjectCode, @JsonProperty("subjectName") final String subjectName, @JsonProperty("assignmentAmount") final int assignmentAmount) {
-        this.subjectId = subjectId;
+    public Subject(@JsonProperty("subjectCode") String subjectCode, @JsonProperty("subjectName") String subjectName, @JsonProperty("assignmentAmount") int assignmentAmount,  @JsonProperty("requiredAssignments") int requiredAssignments) {
         this.subjectCode = subjectCode;
         this.subjectName = subjectName;
         this.assignmentAmount = assignmentAmount;
+        this.requiredAssignments = requiredAssignments;
     }
 
     public Subject(){

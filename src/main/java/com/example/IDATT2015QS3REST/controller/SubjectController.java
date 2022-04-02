@@ -1,6 +1,6 @@
 package com.example.IDATT2015QS3REST.controller;
 
-import com.example.IDATT2015QS3REST.model.LoginRequest;
+import  com.example.IDATT2015QS3REST.model.LoginRequest;
 import com.example.IDATT2015QS3REST.model.LoginResponse;
 import com.example.IDATT2015QS3REST.model.Subject;
 import com.example.IDATT2015QS3REST.service.LoginService;
