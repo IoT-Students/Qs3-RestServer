@@ -27,7 +27,6 @@ public class SubjectQueueServiceTest {
     @BeforeEach
     public void setUp() {
 
-
         SubjectQueueJoinObject subjectQueueJoinObject1 = new SubjectQueueJoinObject(1, "name", "campus", "building", "room", "table", 1, 1, 1, 1, 1);
         SubjectQueueJoinObject subjectQueueJoinObject2 = new SubjectQueueJoinObject(2, "name", "campus", "building", "room", "table", 2, 0, 2, 1, 2);
 
