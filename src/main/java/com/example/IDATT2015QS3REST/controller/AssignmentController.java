@@ -34,7 +34,6 @@ public class AssignmentController {
     public List getAllAssignmentsSubject(@PathVariable("userId") int userId, @PathVariable("subjectId") int subjectId ){
         LOGGER.info("Jeg prøver å hente ut alle øvinger til en student på et fag");
         return assignmentApproveService.getAllAssignmentsSubject(userId, subjectId);
-
     }
 
 }

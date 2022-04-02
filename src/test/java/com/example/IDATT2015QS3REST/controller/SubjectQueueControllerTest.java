@@ -47,9 +47,6 @@ class SubjectQueueControllerTest {
                 .andExpect(jsonPath("$[0].userId").exists())
                 .andExpect(jsonPath("$[0].subjectId", is(42)))
                 .andExpect(jsonPath("$[0].position").exists());
-
-
-
         // Merk: jsonPath har litt sær syntaks. Det brukes slik det er nå, fordi at get-kallet som går til /
         // (metoden veryArchitecturalMessage) returnerer en liste med med Meme. Hadde den derimot returnert
         // bare ett objekt, hadde syntaksen i jsonPath endret seg til:
@@ -59,6 +56,7 @@ class SubjectQueueControllerTest {
         // JsonPath i seg selv er en veldig nyttig sak, men vær obs på at syntaksen kan være kronglete til tider,
         // og en får ikke alltid helt de resultatene en hadde forestilt seg.
     }
+
     @Test
     void getAllSubjectQueueUserTest() throws Exception {
         // Det er en del forskjellige libs som brukes her, se static imports øverst
@@ -79,5 +77,6 @@ class SubjectQueueControllerTest {
                 .andExpect(jsonPath("$[0].position").exists());
 
         }
+
 
     }

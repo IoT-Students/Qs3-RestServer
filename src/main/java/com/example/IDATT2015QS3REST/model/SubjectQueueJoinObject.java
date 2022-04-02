@@ -1,5 +1,8 @@
 package com.example.IDATT2015QS3REST.model;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 public class SubjectQueueJoinObject {
     private int subjectQueueId;
     private String name;
@@ -12,6 +15,25 @@ public class SubjectQueueJoinObject {
     private int userId;
     private int subjectId;
     private int position;
+
+    @JsonCreator
+    public SubjectQueueJoinObject(@JsonProperty("subjectQueueId") final int subjectQueueId, @JsonProperty("name") final String name ,@JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignment") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId, @JsonProperty("position") final int position){
+        this.subjectQueueId = subjectQueueId;
+        this.name = name;
+        this.campus = campus;
+        this.building = building;
+        this.room = room;
+        this.tabl = table;
+        this.assignment = assignment;
+        this.type = type;
+        this.userId = userId;
+        this.subjectId = subjectId;
+        this.position = position;
+    }
+    public SubjectQueueJoinObject(){
+        
+    }
+
 
     public String getName() {
         return name;

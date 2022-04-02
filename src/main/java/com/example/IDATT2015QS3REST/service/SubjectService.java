@@ -4,7 +4,6 @@ import com.example.IDATT2015QS3REST.model.Subject;
 import com.example.IDATT2015QS3REST.repository.SubjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.ArrayList;
 import java.util.List;
