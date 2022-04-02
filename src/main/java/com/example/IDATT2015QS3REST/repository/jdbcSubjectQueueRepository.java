@@ -48,4 +48,11 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueue.class), subjectQueueId, userId);
 
     }
+
+    @Override
+    public int userInQueue(int userId) {
+        LOGGER.info("Sjekker om brukeren er i kø");
+        String sql = ("SELECT COUNT(*) FROM subjectQueue WHERE userId = ?");
+        return jdbcTemplate.queryForObject(sql, new Object[]{userId}, Integer.class);
+    }
 }

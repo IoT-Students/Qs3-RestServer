@@ -37,4 +37,11 @@ public class SubjectQueueService {
 
         return subjectQueueUser;
     }
+
+    public boolean userInQueue(int userId) {
+
+        int userInQueue = subjectQueueRepository.userInQueue(userId);
+
+        return userInQueue > 0;
+    }
 }
