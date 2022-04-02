@@ -62,4 +62,9 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
         return jdbcTemplate.update("DELETE FROM subjectQueue WHERE subjectQueueId = ? ",
                 new Object[]{subjectQueue.getSubjectQueueId()});
     }
+
+    @Override
+    public List<SubjectQueue> getUserInQueue(int userId) {
+        return jdbcTemplate.query("SELECT * FROM subjectQueue WHERE userId = ?", BeanPropertyRowMapper.newInstance(SubjectQueue.class), userId);
+    }
 }

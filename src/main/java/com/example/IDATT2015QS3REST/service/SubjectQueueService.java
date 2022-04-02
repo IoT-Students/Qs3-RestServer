@@ -47,4 +47,8 @@ public class SubjectQueueService {
     public int leaveQueue(SubjectQueue subjectQueue) {
         return subjectQueueRepository.leaveQueue(subjectQueue);
     }
+
+    public List<SubjectQueue> getUserInQueue(int userId) {
+        return subjectQueueRepository.getUserInQueue(userId);
+    }
 }

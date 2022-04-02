@@ -42,6 +42,12 @@ public class SubjectQueueController {
         return subjectQueueService.getSubjectQueueUser(subjectId, userId);
     }
 
+    @GetMapping("/queue/{userId}")
+    public List getUserInQueue(@PathVariable("userId") int userId) {
+        logger.info("Henter bruker i kø med id " + userId);
+        return subjectQueueService.getUserInQueue(userId);
+    }
+
     @GetMapping("/in-queue/{userId}")
     public boolean userInQueue(@PathVariable("userId") int userId) {
         logger.info("Henter ut om brukeren er i kø");
