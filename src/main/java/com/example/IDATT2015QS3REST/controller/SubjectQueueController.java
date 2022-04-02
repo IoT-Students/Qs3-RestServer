@@ -41,4 +41,10 @@ public class SubjectQueueController {
         logger.info("Prøver å hente subjectQueueUser med subjectId " + subjectId + " og userId " + userId);
         return subjectQueueService.getSubjectQueueUser(subjectId, userId);
     }
+
+    @GetMapping("/in-queue/{userId}")
+    public boolean userInQueue(@PathVariable("userId") int userId) {
+        logger.info("Henter ut om brukeren er i kø");
+        return subjectQueueService.userInQueue(userId);
+    }
 }
