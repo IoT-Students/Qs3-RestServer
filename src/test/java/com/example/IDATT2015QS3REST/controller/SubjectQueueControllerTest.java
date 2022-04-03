@@ -32,7 +32,7 @@ class SubjectQueueControllerTest {
     void getAllSubjectQueuesTest() throws Exception {
         // Det er en del forskjellige libs som brukes her, se static imports øverst
         // En har også tilsvarende metoder for POST/PUT/DELETE osv.
-        mockMvc.perform(get("/subjectQueue/42").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/subjectQueue/10000").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.*", hasSize(greaterThanOrEqualTo(1))))
@@ -45,23 +45,16 @@ class SubjectQueueControllerTest {
                 .andExpect(jsonPath("$[0].assignment").exists())
                 .andExpect(jsonPath("$[0].type").exists())
                 .andExpect(jsonPath("$[0].userId").exists())
-                .andExpect(jsonPath("$[0].subjectId", is(42)))
-                .andExpect(jsonPath("$[0].position").exists());
-        // Merk: jsonPath har litt sær syntaks. Det brukes slik det er nå, fordi at get-kallet som går til /
-        // (metoden veryArchitecturalMessage) returnerer en liste med med Meme. Hadde den derimot returnert
-        // bare ett objekt, hadde syntaksen i jsonPath endret seg til:
-        //    .andExpect(jsonPath("$.*", hasSize(greaterThanOrEqualTo(1))))
-        //    .andExpect(jsonPath("$.pic", is("Spongebob")));
-        //
-        // JsonPath i seg selv er en veldig nyttig sak, men vær obs på at syntaksen kan være kronglete til tider,
-        // og en får ikke alltid helt de resultatene en hadde forestilt seg.
+                .andExpect(jsonPath("$[0].subjectId", is(10000)))
+                .andExpect(jsonPath("$[0].position").exists())
+                .andExpect(jsonPath("$[0].status").exists());
     }
 
     @Test
     void getAllSubjectQueueUserTest() throws Exception {
         // Det er en del forskjellige libs som brukes her, se static imports øverst
         // En har også tilsvarende metoder for POST/PUT/DELETE osv.
-        mockMvc.perform(get("/subjectQueue/42/1").contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(get("/subjectQueue/10000/10000").contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().contentTypeCompatibleWith(MediaType.APPLICATION_JSON))
                 .andExpect(jsonPath("$.*", hasSize(greaterThanOrEqualTo(1))))
@@ -72,8 +65,8 @@ class SubjectQueueControllerTest {
                 .andExpect(jsonPath("$[0].tabl").exists())
                 .andExpect(jsonPath("$[0].assignment").exists())
                 .andExpect(jsonPath("$[0].type").exists())
-                .andExpect(jsonPath("$[0].userId", is(1)))
-                .andExpect(jsonPath("$[0].subjectId", is(42)))
+                .andExpect(jsonPath("$[0].userId", is(10000)))
+                .andExpect(jsonPath("$[0].subjectId", is(10000)))
                 .andExpect(jsonPath("$[0].position").exists());
 
         }
