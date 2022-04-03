@@ -13,6 +13,7 @@ public class LoginResponse {
     final private String role;
     final private String name;
     final private String email;
+    private String JWToken;
 
     public LoginResponse(@JsonProperty("loginStatus")  String loginStatus, @JsonProperty("userID") int userID, @JsonProperty("role") String role,@JsonProperty("name") String name,@JsonProperty("email") String email) {
         this.loginStatus = loginStatus;
@@ -44,5 +45,12 @@ public class LoginResponse {
     @JsonProperty("email")
     public String getEmail() {
         return email;
+    }
+
+    public String getJWToken() {
+        return JWToken;
+    }
+    public void setJWToken(String JWToken) {
+        this.JWToken = JWToken;
     }
 }
