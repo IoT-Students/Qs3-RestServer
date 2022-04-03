@@ -35,15 +35,15 @@ public class SubjectStudentServiceTest {
         ArrayList<User> subjectUsers = new ArrayList<>();
         subjectUsers.add(User1);
         subjectUsers.add(User2);
-        Mockito.lenient().when(subjectStudentService.addStudent(Mockito.any())).thenReturn(1);
+        Mockito.lenient().when(subjectStudentService.addStudent(Mockito.any())).thenReturn(true);
         Mockito.lenient().when(subjectStudentRepository.addTeacher(Mockito.any())).thenReturn(1);
         Mockito.lenient().when(subjectStudentRepository.getUsersSubject(Mockito.anyInt())).thenReturn(subjectUsers);
     }
     @Test
     void addStudentTest(){
-        int response =  subjectStudentService.addStudent(Mockito.any());
+        boolean response =  subjectStudentService.addStudent(Mockito.any());
 
-        assertThat(response).isEqualTo(1);
+        assertThat(response).isEqualTo(true);
     }
     @Test
     void addTeacherTest(){
