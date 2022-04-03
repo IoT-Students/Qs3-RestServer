@@ -50,4 +50,8 @@ public class SubjectQueueService {
     public int updateQueue(int userId, int subjectId){
         return subjectQueueRepository.updateQueue(userId, subjectId);
     }
+
+    public List<SubjectQueue> getUserInQueue(int userId) {
+        return subjectQueueRepository.getUserInQueue(userId);
+    }
 }
