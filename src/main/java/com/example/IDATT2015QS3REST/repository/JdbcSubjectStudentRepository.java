@@ -65,7 +65,7 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
 
     @Override
     public List<User> getUsersSubject(int subjectId){
-        String sql = ("SELECT users.userId, users.name, users.email, users.role FROM users JOIN subjectUser ON(subjectUser.userId = users.userId) WHERE subjectUser.subjectId=? AND users.role ='Student'");
+        String sql = ("SELECT users.userId, users.name, users.email, users.role FROM users JOIN subjectUser ON(subjectUser.userId = users.userId) WHERE subjectUser.subjectId=? AND (users.role ='Student' OR users.role = 'Studass')");
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(User.class), subjectId);
 
     }
