@@ -58,13 +58,6 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
     }
 
     @Override
-    public int leaveQueue(SubjectQueue subjectQueue) {
-        LOGGER.info("Fjerner bruker fra kø");
-        return jdbcTemplate.update("DELETE FROM subjectQueue WHERE subjectQueueId = ? ",
-                new Object[]{subjectQueue.getSubjectQueueId()});
-    }
-
-    @Override
     public int updateQueue(int userId, int subjectId) {
         LOGGER.info("Jeg oppdaterer status til en bruker");
 

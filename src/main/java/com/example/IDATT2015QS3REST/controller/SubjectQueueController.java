@@ -53,11 +53,6 @@ public class SubjectQueueController {
         return subjectQueueService.userInQueue(userId);
     }
 
-    @PostMapping("/leave-queue")
-    public int leaveQueue(@RequestBody SubjectQueue subjectQueue) {
-        logger.info("Fjerner bruker " + subjectQueue.getUserId() + " fra kø " + subjectQueue.getSubjectId());
-        return subjectQueueService.leaveQueue(subjectQueue);
-    }
     @GetMapping("/update/{subjectId}/{userId}")
     public int updateQueue(@PathVariable("subjectId") int subjectId, @PathVariable("userId") int userId) {
         logger.info("Oppdaterer bruker i kø med userId: " + userId+ " fra kø med fag: " + subjectId);

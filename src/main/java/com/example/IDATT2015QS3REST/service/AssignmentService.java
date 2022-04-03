@@ -3,6 +3,7 @@ package com.example.IDATT2015QS3REST.service;
 import com.example.IDATT2015QS3REST.model.Assignment;
 import com.example.IDATT2015QS3REST.model.AssignmentApprove;
 import com.example.IDATT2015QS3REST.model.Subject;
+import com.example.IDATT2015QS3REST.model.SubjectQueue;
 import com.example.IDATT2015QS3REST.repository.AssignmentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,11 @@ public class AssignmentService {
     AssignmentRepository assignmentRepository;
 
     public int doAssignmentApprovment(AssignmentApprove assignmentApprove){
-        return assignmentRepository.doAssignmentApprove(assignmentApprove);
+        int response = assignmentRepository.doAssignmentApprove(assignmentApprove);
+        assignmentRepository.deleteFromQueue(assignmentApprove);
+        assignmentRepository.updatePosition(assignmentApprove);
+
+        return response;
     }
 
     public List<Assignment> getAllAssignmentsSubject(int userId, int subjectId){
@@ -27,8 +32,10 @@ public class AssignmentService {
         System.out.println(assignments.size());
 
         return assignments;
+    }
 
-
-
+    public int leaveQueue(AssignmentApprove assignmentApprove) {
+        assignmentRepository.updatePosition(assignmentApprove);
+        return assignmentRepository.deleteFromQueue(assignmentApprove);
     }
 }
