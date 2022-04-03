@@ -1,6 +1,7 @@
 package com.example.IDATT2015QS3REST.controller;
 
 import com.example.IDATT2015QS3REST.model.AssignmentApprove;
+import com.example.IDATT2015QS3REST.model.SubjectQueue;
 import com.example.IDATT2015QS3REST.service.AssignmentService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -25,9 +26,15 @@ public class AssignmentController {
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public int doApprovement(final @RequestBody AssignmentApprove assignmentApprove) {
-        LOGGER.info("Approving..." + assignmentApprove.getName() + " for the subject "  + assignmentApprove.getSubjectId() + " and assignmentnumber " + assignmentApprove.getAssignmentNumber());
+        LOGGER.info("Approving..." + assignmentApprove.getUserId() + " for the subject "  + assignmentApprove.getSubjectId() + " and assignmentnumber " + assignmentApprove.getAssignmentNumber());
 
         return assignmentApproveService.doAssignmentApprovment(assignmentApprove);
+    }
+
+    @PostMapping("/leave-queue")
+    public int leaveQueue(@RequestBody AssignmentApprove assignmentApprove) {
+        LOGGER.info("Fjerner bruker " + assignmentApprove.getUserId() + " fra kø " + assignmentApprove.getSubjectId());
+        return assignmentApproveService.leaveQueue(assignmentApprove);
     }
 
     @GetMapping("{userId}/{subjectId}")

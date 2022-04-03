@@ -4,14 +4,16 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 
 
 public class AssignmentApprove {
-    private String name;
+    private int subjectQueueId;
+    private int userId;
     private int subjectId;
     private int assignmentNumber;
     private int position;
 
     @JsonCreator
-    public AssignmentApprove(String name, int subjectId, int assignmentNumber){
-        this.name = name;
+    public AssignmentApprove(int subjectQueueId, int userId, int subjectId, int assignmentNumber){
+        this.subjectQueueId = subjectQueueId;
+        this.userId = userId;
         this.subjectId = subjectId;
         this.assignmentNumber = assignmentNumber;
     }
@@ -21,8 +23,12 @@ public class AssignmentApprove {
 
     }
 
-    public String getName() {
-        return name;
+    public int getSubjectQueueId() {
+        return subjectQueueId;
+    }
+
+    public int getUserId() {
+        return userId;
     }
 
     public int getSubjectId() {
