@@ -15,6 +15,7 @@ public class SubjectQueueJoinObject {
     private int userId;
     private int subjectId;
     private int position;
+    private boolean status;
 
     @JsonCreator
     public SubjectQueueJoinObject(@JsonProperty("subjectQueueId") final int subjectQueueId, @JsonProperty("name") final String name ,@JsonProperty("campus") final String campus , @JsonProperty("building") final String building, @JsonProperty("room") final String room, @JsonProperty("table") final String table, @JsonProperty("assignment") final int assignment, @JsonProperty("type") final int type, @JsonProperty("userId") final int userId, @JsonProperty("subjectId") final int subjectId, @JsonProperty("position") final int position){
@@ -121,5 +122,13 @@ public class SubjectQueueJoinObject {
 
     public void setPosition(int position) {
         this.position = position;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 }

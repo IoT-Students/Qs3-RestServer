@@ -27,7 +27,6 @@ public class SubjectQueueController {
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public int addSubjectQueue(@RequestBody SubjectQueue subjectQueue) {
-        logger.info("DETTE ER ASSIGNMENTNUMMER:" + subjectQueue.getAssignment() + " DETTE ER DET ANDRE" + subjectQueue.getSubjectId() + subjectQueue.getBuilding());
         return subjectQueueService.addSubjectQueue(subjectQueue);
     }
 
@@ -52,5 +51,10 @@ public class SubjectQueueController {
     public int leaveQueue(@RequestBody SubjectQueue subjectQueue) {
         logger.info("Fjerner bruker " + subjectQueue.getUserId() + " fra kø " + subjectQueue.getSubjectId());
         return subjectQueueService.leaveQueue(subjectQueue);
+    }
+    @GetMapping("/update/{subjectId}/{userId}")
+    public int updateQueue(@PathVariable("subjectId") int subjectId, @PathVariable("userId") int userId) {
+        logger.info("Oppdaterer bruker i kø med userId: " + userId+ " fra kø med fag: " + subjectId);
+        return subjectQueueService.updateQueue(userId, subjectId);
     }
 }

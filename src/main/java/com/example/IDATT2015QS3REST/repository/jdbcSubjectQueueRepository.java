@@ -3,6 +3,7 @@ package com.example.IDATT2015QS3REST.repository;
 import com.example.IDATT2015QS3REST.controller.LoginController;
 import com.example.IDATT2015QS3REST.model.SubjectQueue;
 import com.example.IDATT2015QS3REST.model.SubjectQueueJoinObject;
+import com.example.IDATT2015QS3REST.model.User;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +30,8 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
         System.out.println("Position is " + position);
         subjectQueue.setPosition(position + 1);
 
-        return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignment, type, subjectId, userId, position) VALUES(?,?,?,?,?,?,?,?,?)",
-                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignment(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId(), subjectQueue.getPosition()});
+        return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignment, type, subjectId, userId, position, status) VALUES(?,?,?,?,?,?,?,?,?,?)",
+                new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignment(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId(), subjectQueue.getPosition(), false});
     }
     @Override
     public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectQueueId){
@@ -61,5 +62,13 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
         LOGGER.info("Fjerner bruker fra kø");
         return jdbcTemplate.update("DELETE FROM subjectQueue WHERE subjectQueueId = ? ",
                 new Object[]{subjectQueue.getSubjectQueueId()});
+    }
+
+    @Override
+    public int updateQueue(int userId, int subjectId) {
+        LOGGER.info("Jeg oppdaterer status til en bruker");
+
+        return  jdbcTemplate.update("UPDATE subjectQueue SET status = true WHERE subjectId=? AND userId=?",
+                new Object[] { subjectId, userId});
     }
 }

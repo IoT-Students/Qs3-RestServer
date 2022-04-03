@@ -47,4 +47,7 @@ public class SubjectQueueService {
     public int leaveQueue(SubjectQueue subjectQueue) {
         return subjectQueueRepository.leaveQueue(subjectQueue);
     }
+    public int updateQueue(int userId, int subjectId){
+        return subjectQueueRepository.updateQueue(userId, subjectId);
+    }
 }
