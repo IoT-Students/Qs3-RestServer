@@ -6,8 +6,4 @@ import java.util.List;
 
 public interface UserRepository {
     int save(User user);
-
-    List<User> findAll();
-
-    User findById(int id);
 }

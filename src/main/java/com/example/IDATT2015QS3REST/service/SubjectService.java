@@ -38,16 +38,13 @@ public class SubjectService {
         List<Subject> subjects = new ArrayList<Subject>();
 
         subjectRepository.getAllSubjects(id).forEach(subjectsWithoutSize::add);
-        System.out.println(subjectsWithoutSize.size());
 
         for (int i = 0; i < subjectsWithoutSize.size(); i++) {
             int queueSize = subjectRepository.getQueueSize(subjectsWithoutSize.get(i).getSubjectId());
-            int response = subjectRepository.setQueueSize(subjectsWithoutSize.get(i).getSubjectId(), queueSize);
-            System.out.println("Size fra service: " + queueSize);
+            subjectRepository.setQueueSize(subjectsWithoutSize.get(i).getSubjectId(), queueSize);
         }
 
         subjectRepository.getAllSubjects(id).forEach(subjects::add);
-        System.out.println(subjects.size());
 
         return subjects;
     }

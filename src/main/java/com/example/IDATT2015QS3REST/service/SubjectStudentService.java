@@ -68,7 +68,6 @@ public class SubjectStudentService {
         List<User> users = new ArrayList<>();
 
         subjectStudentRepository.getUsersSubject(subjectId).forEach(users::add);
-        System.out.println(users.size());
         return users;
 
     }
