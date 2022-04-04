@@ -9,12 +9,22 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * A class that represents a repository for handling subjecg events
+ */
+
 @Repository
 public class jdbcSubjectRepository implements SubjectRepository {
 
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * A method for adding a subject and update assignment table
+     *
+     * @param subject the subject you want to add
+     * @return returns a status int
+     */
     @Override
     public int addSubject(Subject subject) {
         System.out.println("Adding...");
@@ -38,11 +48,23 @@ public class jdbcSubjectRepository implements SubjectRepository {
         return subjectId;
     }
 
+    /**
+     * A method for retrieving all subjects for a user
+     * @param userId the userId the subjects are belonging to
+     * @return returns a list of subjects
+     */
+
     @Override
-    public List<Subject> getAllSubjects(int id){
+    public List<Subject> getAllSubjects(int userId){
         String sql = ("SELECT * FROM subjectUser JOIN subject ON(subjectUser.subjectId = subject.subjectId) WHERE subjectUser.userId=?");
-        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Subject.class), id);
+        return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Subject.class), userId);
     }
+
+    /**
+     * A method for finding the queue size
+     * @param subjectId
+     * @return
+     */
 
     @Override
     public int getQueueSize(int subjectId) {
