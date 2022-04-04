@@ -61,9 +61,9 @@ public class jdbcSubjectRepository implements SubjectRepository {
     }
 
     /**
-     * A method for finding the queue size
-     * @param subjectId
-     * @return
+     * A method for finding the queue size for a subject
+     * @param subjectId the subject we are checking the queue size for
+     * @return returns a status as an int
      */
 
     @Override
@@ -73,6 +73,13 @@ public class jdbcSubjectRepository implements SubjectRepository {
 
         return size;
     }
+
+    /**
+     * A method for setting queue size
+     * @param subjectId the subjectId that the queue size is updated for
+     * @param queueSize the queue size that is being set
+     * @return returns a status as an int
+     */
 
     @Override
     public int setQueueSize(int subjectId, int queueSize) {
