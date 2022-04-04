@@ -1,10 +1,6 @@
 package com.example.IDATT2015QS3REST.controller;
 
-import com.example.IDATT2015QS3REST.model.LoginRequest;
-import com.example.IDATT2015QS3REST.model.LoginResponse;
 import com.example.IDATT2015QS3REST.model.User;
-import com.example.IDATT2015QS3REST.repository.UserRepository;
-import com.example.IDATT2015QS3REST.service.LoginService;
 import com.example.IDATT2015QS3REST.service.UserService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -17,12 +13,21 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @EnableAutoConfiguration
 @CrossOrigin
+/**
+ *
+ */
 public class UserController {
     @Autowired
     private UserService userService;
 
     private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
+    /**
+     * A method for adding a user to the database.
+     * A user will be added with userId, name, email, username, password and a mail
+     * @param user
+     * @return
+     */
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public boolean createUser(@RequestBody User user) {

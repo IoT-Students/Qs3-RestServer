@@ -2,6 +2,9 @@ package com.example.IDATT2015QS3REST.model;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
 
+/**
+ *
+ */
 
 public class AssignmentApprove {
     private int subjectQueueId;
@@ -10,6 +13,14 @@ public class AssignmentApprove {
     private int assignmentNumber;
     private int position;
 
+    /**
+     *
+     * @param subjectQueueId
+     * @param userId
+     * @param subjectId
+     * @param assignmentNumber
+     */
+
     @JsonCreator
     public AssignmentApprove(int subjectQueueId, int userId, int subjectId, int assignmentNumber){
         this.subjectQueueId = subjectQueueId;
@@ -17,6 +28,10 @@ public class AssignmentApprove {
         this.subjectId = subjectId;
         this.assignmentNumber = assignmentNumber;
     }
+
+    /**
+     *
+     */
 
     @JsonCreator
     public AssignmentApprove(){

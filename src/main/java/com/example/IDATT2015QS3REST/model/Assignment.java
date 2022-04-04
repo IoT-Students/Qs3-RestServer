@@ -1,11 +1,22 @@
 package com.example.IDATT2015QS3REST.model;
 
+/**
+ * This is a class for holding an assignment
+ */
+
 public class Assignment {
     private int assignmentId;
     private int subjectId;
     private int assignmentNumber;
     private boolean status;
 
+    /**
+     * Constructor for the assignment
+     * @param assignmentId
+     * @param subjectId
+     * @param assignmentNumber
+     * @param status
+     */
 
     public Assignment(int assignmentId, int subjectId, int assignmentNumber, boolean status){
         this.assignmentId = assignmentId;
@@ -13,6 +24,10 @@ public class Assignment {
         this.assignmentNumber = assignmentNumber;
         this.status = status;
     }
+
+    /**
+     * Empty constructor. Makes it possible to create an assignment after a call to the SQL database
+     */
     public Assignment(){
 
     }
@@ -28,8 +43,6 @@ public class Assignment {
     public int getAssignmentNumber() {
         return assignmentNumber;
     }
-
-
 
     public void setAssignmentId(int assignmentId) {
         this.assignmentId = assignmentId;
