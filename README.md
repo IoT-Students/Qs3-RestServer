@@ -47,4 +47,4 @@ mvn clean test
 ## Dokumentasjon
 Alle klasser i REST server er dokumenter med JavaDoc. Du finner lenke her: [JavaDoc](https://magnus-farstad.github.io/Qs3-Docs/)
 
-I tillegg er endepunktene dokumentert med Swagger. Du finner lenke her: [Swagger]() LEGG INN LENKE
+I tillegg er endepunktene dokumentert med Swagger. Du finner lenke her etter man kjører serveren: [Swagger](http://localhost:8085/swagger-ui.html)
