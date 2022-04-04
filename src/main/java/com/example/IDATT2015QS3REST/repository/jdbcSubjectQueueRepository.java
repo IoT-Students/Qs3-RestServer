@@ -13,6 +13,10 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+/**
+ * A class that
+ */
+
 @Repository
 public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
 
