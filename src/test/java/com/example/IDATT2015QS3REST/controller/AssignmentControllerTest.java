@@ -46,7 +46,7 @@ class AssignmentControllerTest {
 
         String response = result.getResponse().getContentAsString();
         String[] array = response.split(",");
-        String[] array2 = array[5].split(":");
+        String[] array2 = array[6].split(":");
         token = array2[1].substring(0,array2[1].length()-1);
         token= token.substring(1, token.length() - 1);
     }
@@ -64,13 +64,5 @@ class AssignmentControllerTest {
                 .andExpect(jsonPath("$[0].assignmentNumber").exists())
                 .andExpect(jsonPath("$[0].status").exists());
 
-        // Merk: jsonPath har litt sær syntaks. Det brukes slik det er nå, fordi at get-kallet som går til /
-        // (metoden veryArchitecturalMessage) returnerer en liste med med Meme. Hadde den derimot returnert
-        // bare ett objekt, hadde syntaksen i jsonPath endret seg til:
-        //    .andExpect(jsonPath("$.*", hasSize(greaterThanOrEqualTo(1))))
-        //    .andExpect(jsonPath("$.pic", is("Spongebob")));
-        //
-        // JsonPath i seg selv er en veldig nyttig sak, men vær obs på at syntaksen kan være kronglete til tider,
-        // og en får ikke alltid helt de resultatene en hadde forestilt seg.
     }
 }

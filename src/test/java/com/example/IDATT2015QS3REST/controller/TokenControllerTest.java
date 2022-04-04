@@ -40,9 +40,8 @@ public class TokenControllerTest {
 
         String response = result.getResponse().getContentAsString();
         String[] array = response.split(",");
-        String[] array2 = array[5].split(":");
+        String[] array2 = array[6].split(":");
         System.out.println(array2[1].substring(0,array2[1].length()-1));
-
 
 
     }
