@@ -28,7 +28,7 @@ Les gjennom alle stegene før bruk!
 - Naviger til mappen der filene ble lagret etter nedlastingen.
 - Kjør ekstern spring-boot server ved å kjøre kommando:
 ```
-java -jar Onion-Routing-Server.jar
+java -jar Qs3-RestServer.jar
 ```
 - Eventuelt kan man navigere til selve prosjekt-mappen og kjøre kommandoen:
 
