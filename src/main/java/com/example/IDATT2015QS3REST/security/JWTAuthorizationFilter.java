@@ -17,6 +17,9 @@ import java.security.Key;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * A class for verifying token access
+ */
 public class JWTAuthorizationFilter extends OncePerRequestFilter {
     private final String HEADER = "Authorization";
 

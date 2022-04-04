@@ -9,11 +9,22 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that represents the service of SubjectStudentService
+ */
+
 @Service
 public class SubjectStudentService {
 
     @Autowired
     SubjectStudentRepository subjectStudentRepository;
+
+    /**
+     * A method for creating and adding students to a subject, or just adding students
+     * if the student is already in the system
+     * @param subjectUser A subjectUser which holds userDetails and subjectId
+     * @return A boolean
+     */
 
     public boolean addStudent(SubjectUser subjectUser) {
 
@@ -37,9 +48,21 @@ public class SubjectStudentService {
             return true;
         }
     }
+
+    /**
+     * A method for adding a teacher to a subject
+     * @param subjectUser A subjectUser which holds userDetails and subjectId
+     * @return returns a statua as an int
+     */
     public int addTeacher(SubjectUser subjectUser) {
         return subjectStudentRepository.addTeacher(subjectUser);
     }
+
+    /**
+     * A method fetching all users for a subject
+     * @param subjectId The subjectId
+     * @return A list with users
+     */
 
     public List<User> getUsersSubject(int subjectId){
         List<User> users = new ArrayList<>();
