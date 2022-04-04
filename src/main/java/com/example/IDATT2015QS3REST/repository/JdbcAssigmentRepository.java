@@ -38,7 +38,6 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
 
     @Override
     public int deleteFromQueue(AssignmentApprove assignmentApprove) {
-        System.out.println("Fjerner bruker fra kø");
         return jdbcTemplate.update("DELETE FROM subjectQueue WHERE subjectQueueId = ? ",
                 new Object[]{assignmentApprove.getSubjectQueueId()});
     }
@@ -51,7 +50,6 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
 
     @Override
     public int updatePosition(AssignmentApprove assignmentApprove) {
-        System.out.println("Oppdaterer posisjon til " + assignmentApprove.getUserId());
         return jdbcTemplate.update("UPDATE subjectQueue SET position = position - 1 WHERE subjectId = ? AND position > ?",
                 new Object[] { assignmentApprove.getSubjectId(), assignmentApprove.getPosition()});
     }
