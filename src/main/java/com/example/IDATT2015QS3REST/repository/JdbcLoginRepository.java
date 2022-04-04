@@ -9,15 +9,25 @@ import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
+/**
+ * A class thar represent a repository for handling login events
+ */
 @Repository
 public class JdbcLoginRepository implements LoginRepository{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    /**
+     * A method for logging in sucessfully
+     * Checks if user is registered in database
+     * @param loginRequest loginRequest with username and password
+     * @return returns a loginResponse with data if user is registered in database, if not returns a null object
+     */
+
     @Override
     public LoginResponse findByLoginRequest(LoginRequest loginRequest) {
         try {
-            System.out.println("LogingRequest: " + loginRequest.getUsername() + ", " + loginRequest.getPassword());
+            System.out.println("LoginRequest: " + loginRequest.getUsername() + ", " + loginRequest.getPassword());
 
 
             User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE username=? AND passw=?",

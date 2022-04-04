@@ -33,13 +33,13 @@ public class AssignmentServiceTest {
         assignments.add(assignment1);
         assignments.add(assignment2);
 
-        Mockito.lenient().when(assignmentRepository.doAssignmentApprove(Mockito.any())).thenReturn(1);
+        Mockito.lenient().when(assignmentRepository.approveAssignment(Mockito.any())).thenReturn(1);
         Mockito.lenient().when(assignmentRepository.getAllAssignmentsSubject(Mockito.anyInt(), Mockito.anyInt())).thenReturn(assignments);
 
     }
     @Test
     void doAssignmentApprovment(){
-        int response =  assignmentService.doAssignmentApprovment(Mockito.any());
+        int response =  assignmentService.approveAssignment(Mockito.any());
 
         assertThat(response).isEqualTo(1);
 

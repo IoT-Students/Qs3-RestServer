@@ -36,9 +36,9 @@ public class AssignmentController {
      */
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
-    public int doApprovement(final @RequestBody AssignmentApprove assignmentApprove) {
+    public int approveAssignment(final @RequestBody AssignmentApprove assignmentApprove) {
         LOGGER.info("Approving..." + assignmentApprove.getUserId() + " for the subject "  + assignmentApprove.getSubjectId() + " and assignmentnumber " + assignmentApprove.getAssignmentNumber());
-        return assignmentApproveService.doAssignmentApprovment(assignmentApprove);
+        return assignmentApproveService.approveAssignment(assignmentApprove);
     }
 
     /**
