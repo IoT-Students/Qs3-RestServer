@@ -1,13 +1,13 @@
 # Qs3-RestServer 🗄️
 ![Java CI with Maven](https://github.com/IoT-Students/QS3-RestServer/actions/workflows/maven.yml/badge.svg)
 
-**generelt:**
+**Generelt:**
 
 - Dette repoet representerer backend for Qs3 klientsiden.
 - Er bygget opp med REST arkitektur
 - Har kontakt med mySQL database 
 
-## Eksterne avhengigheter
+## Eksterne avhengigheter 🧱
 
 ### Maven
 - Maven er brukt som rammeverk i dette prosjektet.
@@ -44,7 +44,7 @@ For å kjøre tester kan denne kommandoen brukes:
 mvn clean test
 ```
 
-## Dokumentasjon
+## Dokumentasjon 📰
 Alle klasser i REST server er dokumenter med JavaDoc. Du finner lenke her: [JavaDoc](https://magnus-farstad.github.io/Qs3-Docs/)
 
 I tillegg er endepunktene dokumentert med Swagger. Du finner lenke her: [Swagger](http://localhost:8085/swagger-ui.html) NB! Kjør server først!
