@@ -23,7 +23,7 @@ import java.util.List;
 @RequestMapping(value = "/assignment")
 @EnableAutoConfiguration
 @CrossOrigin
-@Api(value = "Assignment bdskfs", description = "heioghå")
+@Api(value = "Assignment bdskfs", description = "heiogh")
 public class AssignmentController {
     @Autowired
     private AssignmentService assignmentApproveService;

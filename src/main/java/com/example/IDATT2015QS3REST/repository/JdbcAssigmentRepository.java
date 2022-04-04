@@ -38,7 +38,7 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
 
     @Override
     public int deleteFromQueue(AssignmentApprove assignmentApprove) {
-        System.out.println("Fjerner bruker fra kø");
+        System.out.println("Fjerner bruker fra queue");
         return jdbcTemplate.update("DELETE FROM subjectQueue WHERE subjectQueueId = ? ",
                 new Object[]{assignmentApprove.getSubjectQueueId()});
     }
