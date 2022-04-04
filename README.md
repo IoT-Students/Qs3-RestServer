@@ -10,7 +10,7 @@
 ## Eksterne avhengigheter
 
 ### Maven
-- Maven er brukt som rammeverk i dette prosjektet. Prosjektet importerte Maven underveis, blant annet for å gjøre CI/CD og Releases enklere.
+- Maven er brukt som rammeverk i dette prosjektet.
 
 ### Spring-Boot
 - I server-prosjektet er Spring-Boot blitt benyttet. 
@@ -47,4 +47,4 @@ mvn clean test
 ## Dokumentasjon
 Alle klasser i REST server er dokumenter med JavaDoc. Du finner lenke her: [JavaDoc](https://magnus-farstad.github.io/Qs3-Docs/)
 
-I tillegg er endepunktene dokumentert med Swagger. Du finner lenke her etter man kjører serveren: [Swagger](http://localhost:8085/swagger-ui.html)
+I tillegg er endepunktene dokumentert med Swagger. Du finner lenke her: [Swagger](http://localhost:8085/swagger-ui.html) NB! Kjør server først!
