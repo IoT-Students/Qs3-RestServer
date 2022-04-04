@@ -26,11 +26,7 @@ Les gjennom alle stegene før bruk!
 ### Start Spring-boot server:
 
 - Naviger til mappen der filene ble lagret etter nedlastingen.
-- Kjør ekstern spring-boot server ved å kjøre kommando:
-```
-java -jar Qs3-RestServer.jar
-```
-- Eventuelt kan man navigere til selve prosjekt-mappen og kjøre kommandoen:
+- Kjør ekstern spring-boot server ved å navigere til selve rotkatalogen og kjøre kommando:
 
 ```bash
 mvn spring-boot:run 
