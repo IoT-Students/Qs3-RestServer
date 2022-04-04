@@ -43,7 +43,7 @@ class SubjectQueueControllerTest {
 
         String response = result.getResponse().getContentAsString();
         String[] array = response.split(",");
-        String[] array2 = array[5].split(":");
+        String[] array2 = array[6].split(":");
         token = array2[1].substring(0,array2[1].length()-1);
         token= token.substring(1, token.length() - 1);
     }
