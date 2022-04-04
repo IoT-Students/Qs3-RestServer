@@ -1,7 +1,10 @@
 package com.example.IDATT2015QS3REST.repository;
 
 
+import com.example.IDATT2015QS3REST.controller.LoginController;
 import com.example.IDATT2015QS3REST.model.*;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -19,6 +22,8 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private static final Logger LOGGER = LogManager.getLogger(JdbcAssigmentRepository.class);
+
     /**
      * An overrideable method for approving a student
      * @param assignmentApprove an object that holds necessary information about approvement: userId, subjectId and assignmentId
@@ -26,6 +31,7 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
      */
     @Override
     public int approveAssignment(AssignmentApprove assignmentApprove) {
+        LOGGER.info("Approving assignment");
         return jdbcTemplate.update("UPDATE userAssignment JOIN assignment ON(userAssignment.assignmentId = assignment.assignmentId) JOIN users ON(userAssignment.userId = users.userId) SET userAssignment.status = true WHERE users.userId=? AND assignment.subjectId=? AND assignment.assignmentNumber=?",
                 new Object[]{assignmentApprove.getUserId(), assignmentApprove.getSubjectId(), assignmentApprove.getAssignmentNumber()});
     }
@@ -38,6 +44,7 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
 
     @Override
     public int deleteFromQueue(AssignmentApprove assignmentApprove) {
+        LOGGER.info("Deleting student from queue");
         return jdbcTemplate.update("DELETE FROM subjectQueue WHERE subjectQueueId = ? ",
                 new Object[]{assignmentApprove.getSubjectQueueId()});
     }
@@ -50,6 +57,7 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
 
     @Override
     public int updatePosition(AssignmentApprove assignmentApprove) {
+        LOGGER.info("Updating all positions for students in queue");
         return jdbcTemplate.update("UPDATE subjectQueue SET position = position - 1 WHERE subjectId = ? AND position > ?",
                 new Object[] { assignmentApprove.getSubjectId(), assignmentApprove.getPosition()});
     }
@@ -62,6 +70,7 @@ public class JdbcAssigmentRepository implements AssignmentRepository {
      */
     @Override
     public List<Assignment> getAllAssignmentsSubject(int userId, int subjectId){
+        LOGGER.info("Fetching all assignments for a user in a subject");
         String sql = ("SELECT assignment.assignmentNumber, assignment.assignmentId, userAssignment.status FROM assignment JOIN userAssignment ON(assignment.assignmentId = userAssignment.assignmentId) WHERE userAssignment.userId=? AND assignment.subjectId=?");
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(Assignment.class), userId, subjectId);
     }

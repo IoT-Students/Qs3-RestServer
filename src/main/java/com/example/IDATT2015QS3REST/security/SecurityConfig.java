@@ -20,8 +20,6 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
 
-        http.csrf().disable()
-                .cors().and().authorizeRequests().antMatchers("/swagger-ui.html**","/swagger-ui/**" , "/v3/api-docs/**").permitAll();
         // token endpoint is not protected
         http
                 .csrf().disable()

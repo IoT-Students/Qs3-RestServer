@@ -1,8 +1,11 @@
 package com.example.IDATT2015QS3REST.service;
 
+import com.example.IDATT2015QS3REST.controller.LoginController;
 import com.example.IDATT2015QS3REST.model.SubjectUser;
 import com.example.IDATT2015QS3REST.model.User;
 import com.example.IDATT2015QS3REST.repository.SubjectStudentRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,8 @@ public class SubjectStudentService {
     @Autowired
     SubjectStudentRepository subjectStudentRepository;
 
+    private static final Logger LOGGER = LogManager.getLogger(SubjectStudentService.class);
+
     /**
      * A method for creating and adding students to a subject, or just adding students
      * if the student is already in the system
@@ -27,7 +32,7 @@ public class SubjectStudentService {
      */
 
     public boolean addStudent(SubjectUser subjectUser) {
-
+        LOGGER.info("Service: Adding new student");
         String userDetails = subjectUser.getUserDetails();
         String[] details = userDetails.split(",");
 
@@ -55,6 +60,7 @@ public class SubjectStudentService {
      * @return returns a statua as an int
      */
     public int addTeacher(SubjectUser subjectUser) {
+        LOGGER.info("Service: Adding teacher to subject");
         return subjectStudentRepository.addTeacher(subjectUser);
     }
 
@@ -65,12 +71,12 @@ public class SubjectStudentService {
      */
 
     public List<User> getUsersSubject(int subjectId){
+        LOGGER.info("Service: Fetching all users for a subject");
         List<User> users = new ArrayList<>();
 
         subjectStudentRepository.getUsersSubject(subjectId).forEach(users::add);
         System.out.println(users.size());
         return users;
-
     }
 }
 

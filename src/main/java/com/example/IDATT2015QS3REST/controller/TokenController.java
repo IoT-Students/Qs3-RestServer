@@ -6,6 +6,8 @@ import com.example.IDATT2015QS3REST.service.LoginService;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.http.HttpStatus;
@@ -33,6 +35,8 @@ public class TokenController {
     @Autowired
     private LoginService loginService;
 
+    private static final Logger LOGGER = LogManager.getLogger(TokenController.class);
+
     public static String keyStr = "testsecrettestsecrettestsecrettestsecrettestsecret";
 
     /**
@@ -44,8 +48,8 @@ public class TokenController {
     @PostMapping(value = "")
     @ResponseStatus(value = HttpStatus.CREATED)
     public LoginResponse generateToken(final @RequestBody LoginRequest loginRequest) throws Exception {
-        // check username and password are valid to access token
-        // note that subsequent request to the API need this token
+
+        LOGGER.info("Generating token");
         LoginResponse loginResponse = loginService.doLoginRequest(loginRequest);
 
         if (loginResponse.getLoginStatus() == "Success") {

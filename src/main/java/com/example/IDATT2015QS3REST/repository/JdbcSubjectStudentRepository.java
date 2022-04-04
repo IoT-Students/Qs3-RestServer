@@ -1,9 +1,12 @@
 package com.example.IDATT2015QS3REST.repository;
 
+import com.example.IDATT2015QS3REST.controller.LoginController;
 import com.example.IDATT2015QS3REST.model.Assignment;
 import com.example.IDATT2015QS3REST.model.Subject;
 import com.example.IDATT2015QS3REST.model.SubjectUser;
 import com.example.IDATT2015QS3REST.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -20,6 +23,8 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private static final Logger LOGGER = LogManager.getLogger(JdbcSubjectStudentRepository.class);
+
     /**
      * A method for adding a student to a subject.
      * @param lastName The lastname of the student who is added to the subject
@@ -30,6 +35,7 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
     @Override
     public int addStudent(String lastName, String name, int subjectId) {
 
+        LOGGER.info("Adding a user to a subject, with assignments");
         //Finding the userId to the student
         User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=? AND lastName=?",
                 BeanPropertyRowMapper.newInstance(User.class), name, lastName);

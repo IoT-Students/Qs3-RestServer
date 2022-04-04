@@ -1,10 +1,13 @@
 package com.example.IDATT2015QS3REST.service;
 
+import com.example.IDATT2015QS3REST.controller.LoginController;
 import com.example.IDATT2015QS3REST.model.Assignment;
 import com.example.IDATT2015QS3REST.model.AssignmentApprove;
 import com.example.IDATT2015QS3REST.model.Subject;
 import com.example.IDATT2015QS3REST.model.SubjectQueue;
 import com.example.IDATT2015QS3REST.repository.AssignmentRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +22,7 @@ public class AssignmentService {
     @Autowired
     AssignmentRepository assignmentRepository;
 
+    private static final Logger LOGGER = LogManager.getLogger(AssignmentService.class);
     /**
      * This is a method for approving an assignment.First the student will be removed from the queue, then the position
      * for all remaining student in the queue will be updated
@@ -26,6 +30,7 @@ public class AssignmentService {
      * @return int
      */
     public int approveAssignment(AssignmentApprove assignmentApprove){
+        LOGGER.info("Service: Approving assignment");
         int response = assignmentRepository.approveAssignment(assignmentApprove);
         assignmentRepository.deleteFromQueue(assignmentApprove);
         assignmentRepository.updatePosition(assignmentApprove);
@@ -40,6 +45,7 @@ public class AssignmentService {
      * @return A list of assignments
      */
     public List<Assignment> getAllAssignmentsSubject(int userId, int subjectId){
+        LOGGER.info("Service: Fetching all assignments");
         List<Assignment> assignments = new ArrayList<>();
 
         assignmentRepository.getAllAssignmentsSubject(userId, subjectId).forEach(assignments::add);
@@ -55,6 +61,7 @@ public class AssignmentService {
      * @return A status int
      */
     public int leaveQueue(AssignmentApprove assignmentApprove) {
+        LOGGER.info("Service: Leaving queue");
         assignmentRepository.updatePosition(assignmentApprove);
         return assignmentRepository.deleteFromQueue(assignmentApprove);
     }

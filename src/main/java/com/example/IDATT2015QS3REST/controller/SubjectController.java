@@ -29,7 +29,7 @@ public class SubjectController {
     @Autowired
     private SubjectService subjectService;
 
-    private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
+    private static final Logger LOGGER = LogManager.getLogger(SubjectController.class);
 
     /**
      * This is an endpoint for adding a subject. A subject needs a code, name, total amount of assignments,

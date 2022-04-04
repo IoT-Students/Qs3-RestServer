@@ -27,7 +27,7 @@ public class SubjectStudentController {
     @Autowired
     private SubjectStudentService subjectStudentService;
 
-    private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
+    private static final Logger LOGGER = LogManager.getLogger(SubjectStudentController.class);
 
     /**
      * This is an endpoint for creating and adding students to a subject, or just adding students

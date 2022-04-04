@@ -1,9 +1,12 @@
 package com.example.IDATT2015QS3REST.service;
 
 
+import com.example.IDATT2015QS3REST.controller.LoginController;
 import com.example.IDATT2015QS3REST.model.SubjectQueue;
 import com.example.IDATT2015QS3REST.model.SubjectQueueJoinObject;
 import com.example.IDATT2015QS3REST.repository.SubjectQueueRepository;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -18,12 +21,15 @@ public class SubjectQueueService {
     @Autowired
     SubjectQueueRepository subjectQueueRepository;
 
+    private static final Logger LOGGER = LogManager.getLogger(SubjectQueueService.class);
+
     /**
      * A method for adding a queue object in a subject
      * @param subjectQueue Holds the data needed to add a user to a queue in a subject
      * @return A status as an integer
      */
     public int addSubjectQueue(SubjectQueue subjectQueue) {
+        LOGGER.info("Service: Adding student to queue");
         return subjectQueueRepository.addSubjectQueue(subjectQueue);
     }
 
@@ -34,6 +40,7 @@ public class SubjectQueueService {
      * @return a List of one subjectQueueJoinObject
      */
     public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectQueueId){
+        LOGGER.info("Service: Fetching the queue");
         List<SubjectQueueJoinObject> subjectQueues = new ArrayList<SubjectQueueJoinObject>();
 
         subjectQueueRepository.getAllSubjectQueues(subjectQueueId).forEach(subjectQueues::add);
@@ -50,6 +57,7 @@ public class SubjectQueueService {
      * @return subjectQueueUser
      */
     public List<SubjectQueue> getSubjectQueueUser(int subjectId, int userId){
+        LOGGER.info("Service: Fetching student in queue");
         List<SubjectQueue> subjectQueueUser = new ArrayList<SubjectQueue>();
 
         subjectQueueRepository.getSubjectQueueUser(subjectId, userId).forEach(subjectQueueUser::add);
@@ -63,7 +71,7 @@ public class SubjectQueueService {
      * @return a boolean
      */
     public boolean userInQueue(int userId) {
-
+        LOGGER.info("Service: Checking if a student is in a queue");
         int userInQueue = subjectQueueRepository.userInQueue(userId);
 
         return userInQueue > 0;
@@ -77,6 +85,7 @@ public class SubjectQueueService {
      * @return A status as an integer
      */
     public int updateQueue(int userId, int subjectId){
+        LOGGER.info("Service: Updating status of a queue object");
         return subjectQueueRepository.updateQueue(userId, subjectId);
     }
 
@@ -86,6 +95,7 @@ public class SubjectQueueService {
      * @return A list with a subjectQueue
      */
     public List<SubjectQueue> getUserInQueue(int userId) {
+        LOGGER.info("Service: Fetching a student in queue without subject id");
         return subjectQueueRepository.getUserInQueue(userId);
     }
 }

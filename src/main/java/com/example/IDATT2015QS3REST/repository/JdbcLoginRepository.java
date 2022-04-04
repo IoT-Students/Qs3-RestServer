@@ -1,8 +1,11 @@
 package com.example.IDATT2015QS3REST.repository;
 
+import com.example.IDATT2015QS3REST.controller.LoginController;
 import com.example.IDATT2015QS3REST.model.LoginRequest;
 import com.example.IDATT2015QS3REST.model.LoginResponse;
 import com.example.IDATT2015QS3REST.model.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.IncorrectResultSizeDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -17,6 +20,8 @@ public class JdbcLoginRepository implements LoginRepository{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
+    private static final Logger LOGGER = LogManager.getLogger(JdbcLoginRepository.class);
+
     /**
      * A method for logging in sucessfully
      * Checks if user is registered in database
@@ -26,18 +31,16 @@ public class JdbcLoginRepository implements LoginRepository{
 
     @Override
     public LoginResponse findByLoginRequest(LoginRequest loginRequest) {
+        LOGGER.info("Logging in with user " + loginRequest.getUsername());
         try {
-            System.out.println("LoginRequest: " + loginRequest.getUsername() + ", " + loginRequest.getPassword());
-
-
             User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE username=? AND passw=?",
                     BeanPropertyRowMapper.newInstance(User.class),loginRequest.getUsername(),loginRequest.getPassword());
 
-            System.out.println("Fant bruker med brukernavn:" + user.getUsername() + ",pass" + user.getPassw() + ",id " + user.getUserID() + " og " + user.getRole());
+            LOGGER.info("Log in was successful");
             return new LoginResponse("Success", user.getUserID(), user.getRole(), user.getName(), user.getEmail(), user.getLastName());
 
         } catch (IncorrectResultSizeDataAccessException e) {
-            System.out.println("Did not find user with username: " + loginRequest.getUsername() + " and password: " + loginRequest.getPassword());
+            LOGGER.warn("Wrong username or password");
             return new LoginResponse("Fail");
         }
     }
