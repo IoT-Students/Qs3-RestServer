@@ -37,8 +37,8 @@ public class JdbcLoginRepository implements LoginRepository{
             return new LoginResponse("Success", user.getUserID(), user.getRole(), user.getName(), user.getEmail(), user.getLastName());
 
         } catch (IncorrectResultSizeDataAccessException e) {
-            System.out.println("Fant ikke bruker");
-            return new LoginResponse("Fail", 0, null, null, null, null);
+            System.out.println("Did not find user with username: " + loginRequest.getUsername() + " and password: " + loginRequest.getPassword());
+            return new LoginResponse("Fail");
         }
     }
 

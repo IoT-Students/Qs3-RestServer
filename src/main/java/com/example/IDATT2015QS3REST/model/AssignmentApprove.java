@@ -13,11 +13,11 @@ public class AssignmentApprove {
     private int position;
 
     /**
-     * The constructor
-     * @param subjectQueueId
-     * @param userId
-     * @param subjectId
-     * @param assignmentNumber
+     * The constructor for assignmentApprove
+     * @param subjectQueueId The subjectQueueId
+     * @param userId The userId
+     * @param subjectId The subjectId
+     * @param assignmentNumber The assignmentNumber
      */
     @JsonCreator
     public AssignmentApprove(int subjectQueueId, int userId, int subjectId, int assignmentNumber){
@@ -27,9 +27,6 @@ public class AssignmentApprove {
         this.assignmentNumber = assignmentNumber;
     }
 
-    /**
-     *
-     */
     @JsonCreator
     public AssignmentApprove(){
 
