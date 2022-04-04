@@ -22,21 +22,4 @@ public class JdbcUserRepository implements UserRepository {
         return jdbcTemplate.update("INSERT INTO users (name,email,username,passw,role) VALUES(?,?,?,?,?)",
                 new Object[] {user.getName(), user.getEmail(),user.getUsername(), user.getPassw(), user.getRole()});
     }
-    @Override
-    public List<User> findAll() {
-        return jdbcTemplate.query("SELECT * from users", BeanPropertyRowMapper.newInstance(User.class));
-    }
-
-    @Override
-    public User findById(int id) {
-        try {
-            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE userID=?",
-                    BeanPropertyRowMapper.newInstance(User.class), id);
-
-            return user;
-        } catch (IncorrectResultSizeDataAccessException e) {
-            return null;
-        }
-    }
-
 }

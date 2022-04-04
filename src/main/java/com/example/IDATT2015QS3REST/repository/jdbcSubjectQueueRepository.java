@@ -35,12 +35,12 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
     @Override
     public int addSubjectQueue(SubjectQueue subjectQueue) {
 
+        LOGGER.info("Finding current position");
         int position = jdbcTemplate.queryForObject("SELECT COUNT(*) FROM subjectQueue WHERE subjectId=?",
                 new Object[] {subjectQueue.getSubjectId()}, Integer.class);
 
-        System.out.println("Position is " + position);
         subjectQueue.setPosition(position + 1);
-
+        LOGGER.info("Adding into queue");
         return jdbcTemplate.update("INSERT INTO subjectQueue (campus, building, room, tabl, assignment, type, subjectId, userId, position, status) VALUES(?,?,?,?,?,?,?,?,?,?)",
                 new Object[] {subjectQueue.getCampus(), subjectQueue.getBuilding(), subjectQueue.getRoom(), subjectQueue.getTabl(), subjectQueue.getAssignment(), subjectQueue.getType(), subjectQueue.getSubjectId(), subjectQueue.getUserId(), subjectQueue.getPosition(), false});
     }
@@ -52,7 +52,7 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
      */
     @Override
     public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectId){
-        LOGGER.info("Jeg sender en sql sp?rring for alle subjectQueues");
+        LOGGER.info("Fetching all from queue from the subject with id: " + subjectId);
         String sql = ("SELECT subjectQueue.*, users.name FROM subjectQueue JOIN users ON(subjectQueue.userId = users.userId) WHERE subjectId=?");
 
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueueJoinObject.class), subjectId);
@@ -67,11 +67,9 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
      */
     @Override
     public List<SubjectQueue> getSubjectQueueUser(int subjectId, int userId){
-        LOGGER.info("Jeg henter ut k?-objektet for en bruker");
+        LOGGER.info("Fetching a subjectqueue with userId:" + userId + " from the subject: " + subjectId);
         String sql = ("SELECT * FROM subjectQueue JOIN users ON(subjectQueue.userId = users.userId) WHERE subjectId=? AND subjectQueue.userId=?");
-        LOGGER.info(subjectId);
         return jdbcTemplate.query(sql, BeanPropertyRowMapper.newInstance(SubjectQueue.class), subjectId, userId);
-
     }
 
     /**
@@ -82,7 +80,7 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
 
     @Override
     public int userInQueue(int userId) {
-        LOGGER.info("Sjekker om brukeren er i queue");
+        LOGGER.info("Checking if the user is in queue");
         String sql = ("SELECT COUNT(*) FROM subjectQueue WHERE userId = ?");
         return jdbcTemplate.queryForObject(sql, new Object[]{userId}, Integer.class);
     }
@@ -96,7 +94,7 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
 
     @Override
     public int updateQueue(int userId, int subjectId) {
-        LOGGER.info("Jeg oppdaterer status til en bruker");
+        LOGGER.info("Updating status to a user with id: " + userId);
 
         int status = jdbcTemplate.queryForObject("SELECT status FROM subjectQueue WHERE subjectId=? AND userId=?",
                 new Object[] { subjectId, userId},Integer.class);
@@ -119,6 +117,7 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
 
     @Override
     public List<SubjectQueue> getUserInQueue(int userId) {
+        LOGGER.info("Checking if a user is in a queue");
         return jdbcTemplate.query("SELECT * FROM subjectQueue WHERE userId = ?", BeanPropertyRowMapper.newInstance(SubjectQueue.class), userId);
     }
 }

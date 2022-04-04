@@ -50,8 +50,6 @@ public class AssignmentService {
 
         assignmentRepository.getAllAssignmentsSubject(userId, subjectId).forEach(assignments::add);
 
-        System.out.println(assignments.size());
-
         return assignments;
     }
 
