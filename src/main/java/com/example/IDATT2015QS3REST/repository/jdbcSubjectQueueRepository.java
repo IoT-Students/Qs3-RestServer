@@ -65,8 +65,8 @@ public class jdbcSubjectQueueRepository implements SubjectQueueRepository {
     public int updateQueue(int userId, int subjectId) {
         LOGGER.info("Jeg oppdaterer status til en bruker");
 
-        int status = jdbcTemplate.update("SELECT status FROM subjectQueue WHERE subjectId=? AND userId=?",
-                BeanPropertyRowMapper.newInstance(SubjectQueue.class), subjectId, userId);
+        int status = jdbcTemplate.queryForObject("SELECT status FROM subjectQueue WHERE subjectId=? AND userId=?",
+                new Object[] { subjectId, userId},Integer.class);
 
        if(status == 0){
            return  jdbcTemplate.update("UPDATE subjectQueue SET status = true WHERE subjectId=? AND userId=?",
