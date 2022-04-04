@@ -19,23 +19,22 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public int addStudent(SubjectUser subjectUser) {
+    public int addStudent(String lastName, String name, int subjectId) {
 
-        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=?",
-                BeanPropertyRowMapper.newInstance(User.class),subjectUser.getName());
+        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=? AND lastName=?",
+                BeanPropertyRowMapper.newInstance(User.class), name, lastName);
 
         int userID = user1.getUserID();
-        int subjectID = subjectUser.getSubjectId();
 
         Subject subject = jdbcTemplate.queryForObject("SELECT assignmentAmount FROM subject WHERE subjectId=?",
-                BeanPropertyRowMapper.newInstance(Subject.class),subjectID);
+                BeanPropertyRowMapper.newInstance(Subject.class),subjectId);
 
         int assignmentAmount = subject.getAssignmentAmount();
 
 
         for(int i=0; i < assignmentAmount; i++){
             Assignment assignment = jdbcTemplate.queryForObject("SELECT assignmentId FROM assignment WHERE subjectId=? AND assignmentNumber=?",
-                    BeanPropertyRowMapper.newInstance(Assignment.class),subjectID, i+1);
+                    BeanPropertyRowMapper.newInstance(Assignment.class),subjectId, i+1);
 
             int assignmentId = assignment.getAssignmentId();
 
@@ -44,15 +43,50 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
         }
 
         return jdbcTemplate.update("INSERT INTO subjectUser (userId, subjectId) VALUES(?,?)",
-                new Object[] {userID, subjectID});
+                new Object[] {userID, subjectId});
 
+    }
+
+    @Override
+    public int createStudent(String lastName, String name, String email) {
+        return jdbcTemplate.update("INSERT INTO users (name, lastName, email, role) VALUES(?,?,?, DEFAULT)",
+                new Object[]{name, lastName, email});
+    }
+
+    @Override
+    public boolean findUser(String lastName, String name) {
+        try {
+            User user = jdbcTemplate.queryForObject("SELECT * FROM users WHERE name=? AND lastName=?",
+                    BeanPropertyRowMapper.newInstance(User.class), name, lastName);
+            return user != null;
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public boolean findUserInSubject(String lastName, String name, int subjectid) {
+        try {
+            int userId = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=? AND lastName=?",
+                    new Object[] {name, lastName}, Integer.class);
+
+            System.out.println("findUserInSubject med id " + userId);
+
+            User user = jdbcTemplate.queryForObject("SELECT * FROM subjectUser WHERE userId=? AND subjectId=?",
+                    BeanPropertyRowMapper.newInstance(User.class), userId, subjectid);
+            return user != null;
+        } catch (Exception exception) {
+            System.out.println(exception.getMessage());
+            return false;
+        }
     }
 
     @Override
     public int addTeacher(SubjectUser subjectUser) {
 
         User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=?",
-                BeanPropertyRowMapper.newInstance(User.class),subjectUser.getName());
+                BeanPropertyRowMapper.newInstance(User.class),subjectUser.getUserDetails());
 
         int userID = user1.getUserID();
         int subjectID = subjectUser.getSubjectId();

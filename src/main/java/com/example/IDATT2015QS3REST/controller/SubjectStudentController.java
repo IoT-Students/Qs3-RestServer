@@ -28,8 +28,8 @@ public class SubjectStudentController {
     @ResponseStatus(value = HttpStatus.CREATED)
     public boolean addUserListSubject(@RequestBody List<SubjectUser> subjectUser) {
         for(int i=0; i<subjectUser.size(); i++){
-            LOGGER.info("Adding..." + subjectUser.get(i).getName() + " to the subject with id: " + subjectUser.get(i).getSubjectId());
-            subjectStudentService.addStudent(new SubjectUser(subjectUser.get(i).getName(),subjectUser.get(i).getSubjectId()));
+            LOGGER.info("Adding..." + subjectUser.get(i).getUserDetails() + " to the subject with id: " + subjectUser.get(i).getSubjectId());
+            subjectStudentService.addStudent(new SubjectUser(subjectUser.get(i).getUserDetails(),subjectUser.get(i).getSubjectId()));
         }
 
         return true;
@@ -37,8 +37,8 @@ public class SubjectStudentController {
     @PostMapping(value = "/saveTeacherSubject", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public boolean addTeacherSubject(@RequestBody SubjectUser subjectUser) {
-        LOGGER.info("Adding..." + subjectUser.getName() + " to the subject with id: " + subjectUser.getSubjectId());
-        subjectStudentService.addTeacher(new SubjectUser(subjectUser.getName(),subjectUser.getSubjectId()));
+        LOGGER.info("Adding..." + subjectUser.getUserDetails() + " to the subject with id: " + subjectUser.getSubjectId());
+        subjectStudentService.addTeacher(new SubjectUser(subjectUser.getUserDetails(),subjectUser.getSubjectId()));
 
         return true;
     }
