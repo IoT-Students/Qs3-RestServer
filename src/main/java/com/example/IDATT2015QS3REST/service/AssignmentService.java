@@ -16,8 +16,8 @@ public class AssignmentService {
     @Autowired
     AssignmentRepository assignmentRepository;
 
-    public int doAssignmentApprovment(AssignmentApprove assignmentApprove){
-        int response = assignmentRepository.doAssignmentApprove(assignmentApprove);
+    public int approveAssignment(AssignmentApprove assignmentApprove){
+        int response = assignmentRepository.approveAssignment(assignmentApprove);
         assignmentRepository.deleteFromQueue(assignmentApprove);
         assignmentRepository.updatePosition(assignmentApprove);
 
