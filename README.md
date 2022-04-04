@@ -39,10 +39,10 @@ mvn spring-boot:run
 - Nå venter server på forespørsler fra klientside
 
 ### Kjør tester:
-
-
-
-
+For å kjøre tester kan denne kommandoen brukes:
+```
+mvn clean test
+```
 
 ## Dokumentasjon
 Alle klasser i REST server er dokumenter med JavaDoc. Du finner lenke her: [JavaDoc]() LEGG INN LENKE
