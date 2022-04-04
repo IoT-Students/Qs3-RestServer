@@ -10,15 +10,29 @@ import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A service class for subjectQueue.
+ */
 @Service
 public class SubjectQueueService {
     @Autowired
     SubjectQueueRepository subjectQueueRepository;
 
+    /**
+     * A method for adding a queue object in a subject
+     * @param subjectQueue Holds the data needed to add a user to a queue in a subject
+     * @return A status as an integer
+     */
     public int addSubjectQueue(SubjectQueue subjectQueue) {
         return subjectQueueRepository.addSubjectQueue(subjectQueue);
     }
 
+    /**
+     * A method for fetching a subjectQueueJoinObject to make it visible for
+     * the student assistance who the student is and where he/she is
+     * @param subjectQueueId The subjectQueueId
+     * @return a List of one subjectQueueJoinObject
+     */
     public List<SubjectQueueJoinObject> getAllSubjectQueues(int subjectQueueId){
         List<SubjectQueueJoinObject> subjectQueues = new ArrayList<SubjectQueueJoinObject>();
 
@@ -29,6 +43,12 @@ public class SubjectQueueService {
         return subjectQueues;
     }
 
+    /**
+     * A method for fetching subjectQueueUser from a subjectqueue
+     * @param subjectId
+     * @param userId
+     * @return subjectQueueUser
+     */
     public List<SubjectQueue> getSubjectQueueUser(int subjectId, int userId){
         List<SubjectQueue> subjectQueueUser = new ArrayList<SubjectQueue>();
 
@@ -37,6 +57,11 @@ public class SubjectQueueService {
         return subjectQueueUser;
     }
 
+    /**
+     * A method for checking if a user is already in queue
+     * @param userId
+     * @return a boolean
+     */
     public boolean userInQueue(int userId) {
 
         int userInQueue = subjectQueueRepository.userInQueue(userId);
@@ -44,10 +69,22 @@ public class SubjectQueueService {
         return userInQueue > 0;
     }
 
+    /**
+     * A method for updating when a student is assigned a student assistance
+     * A status will be set to true or false
+     * @param userId The userId
+     * @param subjectId The subjectId
+     * @return A status as an integer
+     */
     public int updateQueue(int userId, int subjectId){
         return subjectQueueRepository.updateQueue(userId, subjectId);
     }
 
+    /**
+     * A method for fetching a student from a queue, when subjectId is unknown.
+     * @param userId The userId
+     * @return A list with a subjectQueue
+     */
     public List<SubjectQueue> getUserInQueue(int userId) {
         return subjectQueueRepository.getUserInQueue(userId);
     }

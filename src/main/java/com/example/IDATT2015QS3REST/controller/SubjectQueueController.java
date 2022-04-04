@@ -62,7 +62,7 @@ public class SubjectQueueController {
      */
     @GetMapping("/{subjectId}/{userId}")
     public List getSubjectQueueUser(@PathVariable("subjectId") int subjectId, @PathVariable("userId") int userId){
-        logger.info("Fetching all the subjectQueueUser from the subject with id: " + subjectId + " and userId " + userId);
+        logger.info("Fetching the subjectQueueUser from the subject with id: " + subjectId + " and userId " + userId);
         return subjectQueueService.getSubjectQueueUser(subjectId, userId);
     }
 
