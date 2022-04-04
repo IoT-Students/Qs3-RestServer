@@ -16,11 +16,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 
@@ -36,24 +38,28 @@ class LoginControllerTest {
     @Autowired
     private ObjectMapper objectMapper;
 
-    @Before
-    void doSomethingBeforeAnyTestsAreRun() {
-        // Hvis en trenger å gjøre noe i forbindelse med oppsett her (in-mem-base, sette opp objektgrafer, osv. osv.)
-    }
-
+    public String token;
     @BeforeEach
-    void doSomethingBeforeEveryTest() {
-        // Hvis en trenger å kjøre kode, som skal kjøres før hver eneste test (resetting av in-mem-base, f.eks)
-    }
+    void doSomethingBeforeEveryTest() throws Exception {
+        LoginRequest loginRequest = new LoginRequest("usernameTEST", "passwordTEST");
 
-    // En har tilsvarende @After og @AfterEach også
-    // Se https://www.baeldung.com/junit-before-beforeclass-beforeeach-beforeall for mer om dette
+        MvcResult result = mockMvc.perform(post("http://localhost:8085/token")
+                        .content(objectMapper.writeValueAsString(loginRequest))
+                        .contentType(MediaType.APPLICATION_JSON))
+                .andExpect(status().isCreated()).andReturn();
+
+        String response = result.getResponse().getContentAsString();
+        String[] array = response.split(",");
+        String[] array2 = array[5].split(":");
+        token = array2[1].substring(0,array2[1].length()-1);
+        token= token.substring(1, token.length() - 1);
+    }
 
     @Test
     void doLoginTest() throws Exception {
 
         LoginRequest loginRequest = new LoginRequest("simen2312", "simen2312");
-        mockMvc.perform(MockMvcRequestBuilders.post("/login")
+        mockMvc.perform(MockMvcRequestBuilders.post("/login").header("Authorization", "Bearer " + token)
                         .content(objectMapper.writeValueAsString(loginRequest))
                         .contentType(MediaType.APPLICATION_JSON))
                 .andExpect(status().isCreated())

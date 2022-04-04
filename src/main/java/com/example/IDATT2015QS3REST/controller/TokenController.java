@@ -31,14 +31,13 @@ public class TokenController {
 
     @PostMapping(value = "")
     @ResponseStatus(value = HttpStatus.CREATED)
-    public LoginResponse generateToken(@RequestParam("username") final String username, @RequestParam("password") final String password) throws Exception {
+    public LoginResponse generateToken(final @RequestBody LoginRequest loginRequest) throws Exception {
         // check username and password are valid to access token
         // note that subsequent request to the API need this token
-        LoginRequest loginRequest = new LoginRequest(username, password);
         LoginResponse loginResponse = loginService.doLoginRequest(loginRequest);
 
         if (loginResponse.getLoginStatus() == "Success") {
-            loginResponse.setJWToken(generateToken(username));
+            loginResponse.setJWToken(generateToken(loginRequest.getUsername()));
             return loginResponse;
         }
         loginResponse.setJWToken("Access denied, wrong credentials....");
