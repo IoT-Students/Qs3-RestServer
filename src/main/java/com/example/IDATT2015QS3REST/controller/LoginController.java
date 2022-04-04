@@ -13,6 +13,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
+/**
+ * This is a controller class for login.
+ * It receives a login request and respond with a login response
+ */
 @RestController
 @RequestMapping(value = "/login")
 @EnableAutoConfiguration
@@ -23,6 +27,12 @@ public class LoginController {
 
     private static final Logger LOGGER = LogManager.getLogger(LoginController.class);
 
+    /**
+     * This is an endpoint for login. It receives a login request with username and password.
+     * If the credentials checks out it returns a login response with userinfo, loginstatus and a token
+     * @param loginRequest
+     * @return loginresponse
+     */
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public LoginResponse doLogin(final @RequestBody LoginRequest loginRequest) {

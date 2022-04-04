@@ -29,8 +29,8 @@ public class SubjectStudentServiceTest {
     @BeforeEach
     public void setUp() {
 
-        User User1 = new User(1, "name1", "email1", "username", "passw", "role1");
-        User User2 = new User(2, "name2", "email2", "username", "passw", "role2");
+        User User1 = new User(1, "name1", "email1", "username", "passw", "role1", "lastname");
+        User User2 = new User(2, "name2", "email2", "username", "passw", "role2", "lastname");
 
         ArrayList<User> subjectUsers = new ArrayList<>();
         subjectUsers.add(User1);

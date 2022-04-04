@@ -3,19 +3,21 @@ package com.example.IDATT2015QS3REST.model;
 public class User {
     private int userID;
     private String name;
+    private String lastName;
     private String email;
     private String username;
     private String passw;
     private String role;
 
 
-    public User(int userID, String name, String email, String username, String passw, String role){
+    public User(int userID, String name, String email, String username, String passw, String role, String lastName){
         this.userID = userID;
         this.name = name;
         this.email = email;
         this.username = username;
         this.passw = passw;
         this.role = role;
+        this.lastName = lastName;
     }
     public User() {
 
@@ -54,6 +56,10 @@ public class User {
         return role;
     }
 
+    public String getLastName() {
+        return lastName;
+    }
+
     public void setUserID(int userID) {
         this.userID = userID;
     }
@@ -76,6 +82,10 @@ public class User {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 }
 

@@ -85,8 +85,10 @@ public class JdbcSubjectStudentRepository implements SubjectStudentRepository{
     @Override
     public int addTeacher(SubjectUser subjectUser) {
 
-        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=?",
-                BeanPropertyRowMapper.newInstance(User.class),subjectUser.getUserDetails());
+        String[] userDetails = subjectUser.getUserDetails().split(",");
+        System.out.println(userDetails[0] + userDetails[1] + userDetails[2]);
+        User user1 = jdbcTemplate.queryForObject("SELECT userID FROM users WHERE name=? AND lastName=?",
+                BeanPropertyRowMapper.newInstance(User.class), userDetails[1], userDetails[0]);
 
         int userID = user1.getUserID();
         int subjectID = subjectUser.getSubjectId();

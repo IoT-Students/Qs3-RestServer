@@ -26,7 +26,7 @@ public class LoginServiceTest {
 
     @BeforeEach
     public void setUp() {
-        LoginResponse loginResponse = new LoginResponse("Success", 1,  "Student", "Name", "email.com");
+        LoginResponse loginResponse = new LoginResponse("Success", 1,  "Student", "Name", "email.com", "lastname");
 
         Mockito.lenient().when(loginRepository.findByLoginRequest(Mockito.any())).thenReturn(loginResponse);
     }

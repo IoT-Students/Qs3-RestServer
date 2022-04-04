@@ -19,6 +19,12 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
+/**
+ * This is a controller class for token.
+ * It is used to generate a jwt token if a user login
+ * with correct credentials
+ */
+
 @RestController
 @RequestMapping(value = "/token")
 @EnableAutoConfiguration
@@ -29,6 +35,12 @@ public class TokenController {
 
     public static String keyStr = "testsecrettestsecrettestsecrettestsecrettestsecret";
 
+    /**
+     * This is an endpoint for generate a token if the correct login credentials it presented.
+     * @param loginRequest
+     * @return Loginresponse where the jwtoken is stored
+     * @throws Exception
+     */
     @PostMapping(value = "")
     @ResponseStatus(value = HttpStatus.CREATED)
     public LoginResponse generateToken(final @RequestBody LoginRequest loginRequest) throws Exception {
@@ -43,6 +55,13 @@ public class TokenController {
         loginResponse.setJWToken("Access denied, wrong credentials....");
         return loginResponse;
     }
+
+    /**
+     * This is the helping method for generateToken
+     * @param userId
+     * @return a jwtoken
+     * @throws Exception
+     */
 
     public String generateToken(String userId) throws Exception {
         Key key = Keys.hmacShaKeyFor(keyStr.getBytes("UTF-8"));

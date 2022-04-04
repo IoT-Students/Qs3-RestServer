@@ -13,6 +13,10 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+/**
+ * This is a controller class for assignments. For approving, fetching and deleting assignment.
+ */
+
 @RestController
 @RequestMapping(value = "/assignment")
 @EnableAutoConfiguration
@@ -23,23 +27,41 @@ public class AssignmentController {
 
     private static final Logger LOGGER = LogManager.getLogger(AssignmentController.class);
 
+    /**
+     * This is an endpoint for approving an assignment and removing the student from the queue
+     * AssignmentApprove is an object that store userId, subjectId, assignmentNumber, position
+     * This is all needed for approving the right person and deleting the right person from queue
+     * @param assignmentApprove The assignment to be approved
+     * @return
+     */
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public int doApprovement(final @RequestBody AssignmentApprove assignmentApprove) {
         LOGGER.info("Approving..." + assignmentApprove.getUserId() + " for the subject "  + assignmentApprove.getSubjectId() + " and assignmentnumber " + assignmentApprove.getAssignmentNumber());
-
         return assignmentApproveService.doAssignmentApprovment(assignmentApprove);
     }
 
+    /**
+     * This is an endpoint for removing a student from the queue
+     * @param assignmentApprove
+     * @return
+     */
     @PostMapping("/leave-queue")
     public int leaveQueue(@RequestBody AssignmentApprove assignmentApprove) {
-        LOGGER.info("Fjerner bruker " + assignmentApprove.getUserId() + " fra kø " + assignmentApprove.getSubjectId());
+        LOGGER.info("Removing user with ID: " + assignmentApprove.getUserId() + " from the queue for the subject: " + assignmentApprove.getSubjectId());
         return assignmentApproveService.leaveQueue(assignmentApprove);
     }
 
+    /**
+     * This is an endpoint for fetching all the assignments for a user in a subject
+     * @param userId The userId to the user trying to fetch the assignments
+     * @param subjectId The subjectId to the user trying to fetch the assignments
+     * @return
+     */
+
     @GetMapping("{userId}/{subjectId}")
     public List getAllAssignmentsSubject(@PathVariable("userId") int userId, @PathVariable("subjectId") int subjectId ){
-        LOGGER.info("Jeg prøver å hente ut alle øvinger til en student på et fag");
+        LOGGER.info("Fetching all the assignment for a student in a subject...");
         return assignmentApproveService.getAllAssignmentsSubject(userId, subjectId);
     }
 
