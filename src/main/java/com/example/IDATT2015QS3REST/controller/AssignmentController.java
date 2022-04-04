@@ -3,6 +3,8 @@ package com.example.IDATT2015QS3REST.controller;
 import com.example.IDATT2015QS3REST.model.AssignmentApprove;
 import com.example.IDATT2015QS3REST.model.SubjectQueue;
 import com.example.IDATT2015QS3REST.service.AssignmentService;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import java.util.List;
 @RequestMapping(value = "/assignment")
 @EnableAutoConfiguration
 @CrossOrigin
+@Api(value = "Assignment bdskfs", description = "heioghå")
 public class AssignmentController {
     @Autowired
     private AssignmentService assignmentApproveService;
@@ -34,6 +37,7 @@ public class AssignmentController {
      * @param assignmentApprove The assignment to be approved
      * @return
      */
+    @ApiOperation(value = "Approves assignment")
     @PostMapping(value = "", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     @ResponseStatus(value = HttpStatus.CREATED)
     public int approveAssignment(final @RequestBody AssignmentApprove assignmentApprove) {
